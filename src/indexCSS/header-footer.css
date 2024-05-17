@@ -1,0 +1,145 @@
+.banner {
+  width: 100%;
+  height: 12.5vw;
+
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  background-image: url("/index/banner.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.lace {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  max-width: 2000px;
+  height: 1.75vw;
+  max-height: 35px;
+
+  background-image: url("/index/lace.png");
+  background-position: top;
+  background-size: cover;
+  background-repeat: repeat-x;
+}
+
+body
+
+/*----FOOTER-----*/
+
+footer {
+  width: 100%;
+  max-width: 2000px;
+
+  margin: 1vw auto 0 auto;
+  overflow: hidden;
+
+  .lace {
+    transform: rotate(180deg);
+  }
+
+  .footer {
+    background-image: url("/index/footer.png");
+    width: 100%;
+    height: 3.125vw;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      height: 1.7vw;
+      width: 1.7vw;
+      margin: 0 0.5vw;
+
+      opacity: 0.85;
+      border: none;
+      box-shadow: none;
+    }
+    button {
+      all: unset;
+    }
+
+    p,
+    a,
+    button {
+      font-weight: 200;
+      font-family: var(--fontText);
+      font-size: 15px;
+      margin: 0 auto;
+    }
+
+    button {
+      text-decoration: none;
+      color: #000;
+      font-weight: 900;
+      font-size: 24px;
+    }
+
+    button:hover {
+      cursor: pointer;
+      font-size: 28px !important;
+    }
+
+    a {
+      font-weight: 400;
+      text-decoration: none;
+      color: #000;
+    }
+
+    a:hover {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    span,
+    ul {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin: 0;
+    }
+
+    span > p:nth-child(2) {
+      padding-right: 1vw;
+      border-right: 1px solid gray;
+    }
+
+    span > p:nth-child(3) {
+      padding-left: 1vw;
+    }
+
+    li {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+    }
+
+    li:first-child {
+      width: 75px;
+    }
+
+    li:nth-child(2) {
+      border-left: 1px solid gray;
+      border-right: 1px solid gray;
+    }
+
+    li:nth-child(4) {
+      border-left: 1px solid gray;
+      border-right: 1px solid gray;
+    }
+
+    li:nth-child(5) {
+      width: 50px;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Clicker+Script&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --fontText: "Urbanist", sans-serif;
+  --fontHeader: "Clicker Script", cursive;
+
+  --red: #ee2147;
+
+  font-family: var(--fontText), sans-serif;
+}
+
+*,
+html {
+  scroll-behavior: smooth !important;
+}
+
+html::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background-color: #f6ede6;
+  box-shadow: 0 0 4px inset #dcc8b7;
+}
+
+html::-webkit-scrollbar {
+  width: 6px;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #e4bcb1;
+  box-shadow: 0 0 2px inset #b28b8b;
+  border-radius: 10px;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  overflow-x: hidden;
+
+  background-image: url("/index/bck.png");
+}
+
+#root {
+  overflow-x: hidden;
+  min-height: calc(100vh - 20.125vw);
+}
