@@ -6,13 +6,15 @@ import { firebaseConfig } from "./config";
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const auth = getAuth(app);
+const dbRef = ref(database);
 
-export function logIn(setter, email, password) {
+export function logIn(setter, email, password, setterError) {
   signInWithEmailAndPassword(auth, email, password)
     .then(() => {
       setter(true);
     })
     .catch((error) => {
+      setterError(true);
       console.log(error);
     });
 }
@@ -31,7 +33,6 @@ const article = {
 };
 
 export function newArticle() {
-  const dbRef = ref(database);
   const dateID = Date.now();
   get(child(dbRef, `unfinished`))
     .then((snapshot) => {
@@ -46,8 +47,6 @@ export function newArticle() {
 }
 
 export function initialData(setter, setterID) {
-  const dbRef = ref(database);
-
   get(child(dbRef, `unfinished`))
     .then((snapshot) => {
       if (snapshot.val() === null) {
@@ -63,17 +62,6 @@ export function initialData(setter, setterID) {
         setter(snapshot.val()[latest]);
         setterID(`${latest}`);
       }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-
-export function loadInitialData() {
-  const dbRef = ref(database);
-  return get(child(dbRef, `unfinished`))
-    .then((snapshot) => {
-      return snapshot.val();
     })
     .catch((error) => {
       console.error(error);

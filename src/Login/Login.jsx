@@ -9,9 +9,22 @@ function Login({ setAuth }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [errorMessage, setErrorMessage] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    logIn(setAuth, email, password);
+    if (errorMessage) {
+      const loginButton = document.getElementById("login-button");
+      loginButton.classList.remove("buttonError");
+      loginButton.offsetWidth;
+      loginButton.classList.add("buttonError");
+    }
+    logIn(setAuth, email, password, setErrorMessage);
+  };
+
+  const handleInput = (e, inputSetter) => {
+    inputSetter(e.target.value);
+    setErrorMessage(false);
   };
 
   return (
@@ -24,7 +37,7 @@ function Login({ setAuth }) {
               type="email"
               id="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => handleInput(e, setEmail)}
               required
             />
           </div>
@@ -34,11 +47,18 @@ function Login({ setAuth }) {
               type="password"
               id="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handleInput(e, setPassword)}
               required
             />
           </div>
-          <button type="submit">Log In</button>
+          <button
+            id="login-button"
+            type="submit"
+            className={errorMessage ? "buttonError" : undefined}
+          >
+            Log In
+          </button>
+          {errorMessage && <div className="errorMessage">Špatné heslo nebo email!</div>}
         </form>
         <div className="tape"></div>
         <div className="tape"></div>

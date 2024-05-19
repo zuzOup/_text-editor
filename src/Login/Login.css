@@ -122,12 +122,53 @@
           #fdfcfa
         );
         box-shadow: 0 2px 7.5px 0 rgba(226, 183, 173, 0.65);
-        transition: all 0.4s ease-in-out;
+        transition: background-position 0.4s ease-in-out;
 
         &:hover {
           background-position: 100% 0;
         }
+
+        &.buttonError {
+          animation: shake-horizontal 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+        }
       }
     }
+    .errorMessage {
+      margin-top: 2%;
+      text-align: center;
+      font-size: 10px;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--darkRed);
+    }
+  }
+}
+
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+  }
+  80% {
+    -webkit-transform: translateX(3px);
+    transform: translateX(3px);
+  }
+  90% {
+    -webkit-transform: translateX(-3px);
+    transform: translateX(-3px);
   }
 }
