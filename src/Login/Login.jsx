@@ -18,7 +18,7 @@ function Login({ setAuth }) {
     <div className="loginPolaroid">
       <div className="frame">
         <form onSubmit={handleSubmit}>
-          <div className="input">
+          <div className="inputs">
             <div className="label">Email:</div>
             <input
               type="email"
@@ -28,7 +28,7 @@ function Login({ setAuth }) {
               required
             />
           </div>
-          <div className="input">
+          <div className="inputs">
             <div className="label">Password:</div>
             <input
               type="password"
