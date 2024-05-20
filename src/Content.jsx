@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { initialData } from "./firebase/firebaseHelpers";
 
 import Preview from "./Content/Header/Preview";
-// import Day from "./Content/Header/Day";
+import Day from "./Content/Header/Day";
 import Title from "./Content/Header/Title";
 import Date from "./Content/Header/Date";
 
@@ -21,8 +21,8 @@ function Content() {
   return (
     <>
       <Preview preview={articleData.header.preview} articleID={articleID.current} />
-      {/*<Day />
-      <Weather weather={weather} setWeather={setWeather} />*/}
+      <Day date={articleData.header.date} />
+      {/* <Weather weather={weather} setWeather={setWeather} /> */}
       <div className="header">
         <Title
           title={articleData.header.title}

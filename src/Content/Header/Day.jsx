@@ -1,11 +1,16 @@
 import PropTypes from "prop-types";
 
-function Day({ prop }) {
-  // console.log(`🌸Day🌸`)
+import { day } from "../../helpers/helpers";
 
-  return <div>Day</div>;
+function Day({ date }) {
+  return (
+    <div className="day">
+      <p>{day(date)}</p>
+    </div>
+  );
 }
-
 export default Day;
 
-Day.propTypes = { prop: PropTypes.any };
+Day.propTypes = {
+  date: PropTypes.string,
+};
