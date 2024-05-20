@@ -48,3 +48,8 @@ body {
   overflow-x: hidden;
   min-height: calc(100vh - 20.125vw);
 }
+
+hr {
+  border-top: 1px solid #ee2147;
+  width: 4vw;
+}

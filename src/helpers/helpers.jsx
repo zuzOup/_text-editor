@@ -8,7 +8,7 @@ export const article = {
   articles: {},
   article_order: [],
   header: {
-    date: "",
+    date: new Date().toISOString().substring(0, 10),
     place: { latitude: "", longitude: "", place: "Toronto" },
     title: "",
     preview: { url: "", alt: "" },

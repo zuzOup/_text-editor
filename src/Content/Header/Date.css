@@ -1,0 +1,30 @@
+#date {
+  all: unset;
+  font-size: 1.9vw;
+  margin: 1vw auto 4vw auto;
+
+  text-align: center;
+  font-family: var(--fontText);
+  font-weight: 200;
+  color: gray;
+  letter-spacing: 1.3px;
+  width: 14vw;
+  transform: translateX(1.1vw);
+
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.45;
+    height: 15px;
+    margin-top: 2px;
+    filter: var(--filter);
+  }
+
+  &:hover {
+    cursor: text;
+    text-shadow: 1px 0px 0px rgb(77, 75, 75);
+  }
+
+  &:focus {
+    border: dotted 1px gray;
+  }
+}

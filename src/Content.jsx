@@ -8,6 +8,8 @@ import Date from "./Content/Header/Date";
 
 import { article } from "./helpers/helpers";
 
+import "./Content/Header/Header.css";
+
 function Content() {
   const [articleData, setArticleData] = useState(article);
   const articleID = useRef("");
@@ -19,11 +21,8 @@ function Content() {
   return (
     <>
       <Preview preview={articleData.header.preview} articleID={articleID.current} />
-      {/*
-      <Day />
-      
+      {/*<Day />
       <Weather weather={weather} setWeather={setWeather} />*/}
-
       <div className="header">
         <Title
           title={articleData.header.title}
@@ -32,33 +31,37 @@ function Content() {
               const obj = {
                 ...prevData,
               };
-
               obj.header.title = updatedTitle;
-
-              // localStorage.setItem("articles", JSON.stringify(obj));
-
               return obj;
             })
           }
-          //TODO: whenPublishing => remove add deco to title
+          //TODO: whenPublishing => add deco to title; remove deco
           deco={articleData.header.deco}
           setDeco={(updatedDeco) =>
             setArticleData((prevData) => {
               const obj = {
                 ...prevData,
               };
-
               obj.header.deco = updatedDeco;
-
-              // localStorage.setItem("articles", JSON.stringify(obj));
-
               return obj;
             })
           }
           path={`/${articleID.current}/header`}
         />
         <hr />
-        <Date />
+        <Date
+          date={articleData.header.date}
+          setDate={(updatedDate) =>
+            setArticleData((prevData) => {
+              const obj = {
+                ...prevData,
+              };
+              obj.header.date = updatedDate;
+              return obj;
+            })
+          }
+          path={`/${articleID.current}/header`}
+        />
       </div>
 
       {/* <Editor />  */}
