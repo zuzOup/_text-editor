@@ -5,6 +5,8 @@
   --fontHeader: "Clicker Script", cursive;
 
   --darkRed: #c04b40;
+  --input: #f9f7f6;
+  --inputActive: #f7efed;
 
   font-family: var(--fontText), sans-serif;
 }

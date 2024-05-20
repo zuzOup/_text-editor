@@ -78,7 +78,7 @@
         }
 
         input {
-          background-color: #f9f7f6;
+          background-color: var(--input);
           border: none;
           border-radius: 10px;
           box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -98,7 +98,7 @@
 
           &:focus,
           &:-webkit-autofill:focus {
-            background-color: #f7efed;
+            background-color: var(--inputActive);
           }
         }
       }

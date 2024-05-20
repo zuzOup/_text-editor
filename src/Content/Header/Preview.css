@@ -1,0 +1,33 @@
+#preview {
+  cursor: pointer;
+  width: 80px;
+  height: 75px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: rgb(159, 159, 159) 1px solid;
+  box-shadow: 1px 1px 5px #878787bf;
+  border-radius: 2px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  div {
+    width: 70px;
+    height: 52.5px;
+    border: #dfd6d2 1px solid;
+
+    text-align: center;
+    background-color: var(--input);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3px auto;
+
+    &.hovered {
+      background-color: var(--inputActive);
+    }
+  }
+}
