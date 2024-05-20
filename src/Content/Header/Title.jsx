@@ -3,9 +3,9 @@ import { useEffect, useRef } from "react";
 
 import "./Title.css";
 
-import { lastDeco } from "../../firebase/firebaseHelpers";
+import { lastDeco, updateData } from "../../firebase/firebaseHelpers";
 
-function Title({ title, setTitle, deco, setDeco }) {
+function Title({ title, setTitle, deco, setDeco, path }) {
   const lastDecos = useRef({ vol: "", star: "" });
 
   useEffect(() => {
@@ -16,8 +16,10 @@ function Title({ title, setTitle, deco, setDeco }) {
     if (e.target.id === deco) {
       e.target.checked = false;
       setDeco(false);
+      updateData(path, { deco: false });
     } else {
       setDeco(e.target.id);
+      updateData(path, { deco: e.target.id });
 
       deco === "star"
         ? setTitle("Volejbalové Kousky Vojtíka ")
@@ -56,6 +58,7 @@ function Title({ title, setTitle, deco, setDeco }) {
           className="articleTitle"
           onChange={(e) => {
             setTitle(e.target.value);
+            updateData(path, { title: e.target.value });
           }}
           value={title}
         />
@@ -88,4 +91,5 @@ Title.propTypes = {
   setTitle: PropTypes.func,
   deco: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   setDeco: PropTypes.func,
+  path: PropTypes.string,
 };

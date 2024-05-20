@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, child, get } from "firebase/database";
+import { getDatabase, ref, set, child, get, update } from "firebase/database";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseConfig } from "./config";
 
@@ -21,7 +21,7 @@ export function logIn(setter, email, password, setterError) {
     });
 }
 
-export function initialData(setter, setterID) {
+export function initialData(setter, ref) {
   get(child(dbRef, `unfinished`))
     .then((snapshot) => {
       if (snapshot.val() === null) {
@@ -30,7 +30,7 @@ export function initialData(setter, setterID) {
           ...snapshot.val(),
           [dateID]: article,
         });
-        setterID(dateID);
+        ref.current = dateID;
       } else {
         const latest = Math.max(...Object.keys(snapshot.val()).map((x) => parseInt(x)));
 
@@ -45,7 +45,7 @@ export function initialData(setter, setterID) {
         }
 
         setter(articleData);
-        setterID(`${latest}`);
+        ref.current = `${latest}`;
       }
     })
     .catch((error) => {
@@ -75,4 +75,8 @@ export function lastDeco(ref) {
     .catch((error) => {
       console.error(error);
     });
+}
+
+export function updateData(path, newData) {
+  update(child(dbRef, `unfinished${path}`), newData);
 }

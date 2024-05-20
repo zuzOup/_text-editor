@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { initialData } from "./firebase/firebaseHelpers";
 
 import Preview from "./Content/Header/Preview";
@@ -10,15 +10,15 @@ import { article } from "./helpers/helpers";
 
 function Content() {
   const [articleData, setArticleData] = useState(article);
-  const [articleID, setArticleID] = useState("");
+  const articleID = useRef("");
 
   useEffect(() => {
-    initialData(setArticleData, setArticleID);
+    initialData(setArticleData, articleID);
   }, []);
 
   return (
     <>
-      <Preview preview={articleData.header.preview} articleID={articleID} />
+      <Preview preview={articleData.header.preview} articleID={articleID.current} />
       {/*
       <Day />
       
@@ -55,6 +55,7 @@ function Content() {
               return obj;
             })
           }
+          path={`/${articleID.current}/header`}
         />
         <hr />
         <Date />
