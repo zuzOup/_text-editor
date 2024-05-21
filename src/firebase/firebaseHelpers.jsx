@@ -81,8 +81,6 @@ export function firebase_updateData(path, newData) {
 }
 
 export function firebase_addArticle(path, newArticleID, data) {
-  console.log(data);
-
   get(child(dbRef, `unfinished${path}`))
     .then((snapshot) => {
       const articles = snapshot.val().articles;
@@ -97,6 +95,16 @@ export function firebase_addArticle(path, newArticleID, data) {
         ...article_order,
         newArticleID,
       ]);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+export function firebase_changeArticleOrder(path, newData) {
+  get(child(dbRef, `unfinished${path}`))
+    .then(() => {
+      set(ref(database, `unfinished${path}/article_order`), [...newData]);
     })
     .catch((error) => {
       console.error(error);

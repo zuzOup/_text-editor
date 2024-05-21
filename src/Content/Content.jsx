@@ -6,11 +6,14 @@ import Weather from "./Header/Weather/Weather";
 import Title from "./Header/Title/Title";
 import Date from "./Header/Date/Date";
 
+import Editor from "./Editor/Editor";
+
+import AddPart from "./AddPart/AddPart";
+
 import { article } from "../helpers/helpers";
 import { firebase_initialData } from "../firebase/firebaseHelpers";
 
 import "./Header/Header.css";
-import AddPart from "./AddPart/AddPart";
 
 function Content() {
   const [articleData, setArticleData] = useState(article);
@@ -80,7 +83,19 @@ function Content() {
       </div>
       {/*---------------------------------------------------------------------------------------------- */}
 
-      {/* <Editor />  */}
+      <Editor
+        articleOrder={articleData.article_order}
+        setArticleOrder={(newOrder) => {
+          setArticleData((prevData) => {
+            const obj = {
+              ...prevData,
+            };
+            obj.article_order = newOrder;
+            return obj;
+          });
+        }}
+        path={`/${articleID.current}`}
+      />
 
       {/*---------------------------------------------------------------------------------------------- */}
       <AddPart
