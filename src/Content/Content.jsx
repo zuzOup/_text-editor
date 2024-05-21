@@ -1,15 +1,16 @@
 import { useEffect, useState, useRef } from "react";
-import { initialData } from "./firebase/firebaseHelpers";
+import { initialData } from "../firebase/firebaseHelpers";
 
-import Preview from "./Content/Header/Preview";
-import Day from "./Content/Header/Day";
-import Weather from "./Content/Header/Weather";
-import Title from "./Content/Header/Title";
-import Date from "./Content/Header/Date";
+import Preview from "./Header/Preview/Preview";
+import Day from "./Header/Day";
+import Weather from "./Header/Weather/Weather";
+import Title from "./Header/Title/Title";
+import Date from "./Header/Date/Date";
 
-import { article } from "./helpers/helpers";
+import { article } from "../helpers/helpers";
 
-import "./Content/Header/Header.css";
+import "./Header/Header.css";
+import AddPart from "./AddPart/AddPart";
 
 function Content() {
   const [articleData, setArticleData] = useState(article);
@@ -21,6 +22,7 @@ function Content() {
 
   return (
     <>
+      {/*-------------------------------------------  Header  ------------------------------------------- */}
       <Preview preview={articleData.header.preview} articleID={articleID.current} />
       <Day date={articleData.header.date} />
       <Weather
@@ -76,8 +78,32 @@ function Content() {
           path={`/${articleID.current}/header`}
         />
       </div>
+      {/*---------------------------------------------------------------------------------------------- */}
 
       {/* <Editor />  */}
+
+      {/*---------------------------------------------------------------------------------------------- */}
+      <AddPart
+        addToOrder={(newArticle) =>
+          setArticleData((prevData) => {
+            const obj = {
+              ...prevData,
+            };
+            obj.article_order.push(newArticle);
+            return obj;
+          })
+        }
+        addToArticles={(newArticle, button) => {
+          setArticleData((prevData) => {
+            const obj = {
+              ...prevData,
+              [newArticle]: [button],
+            };
+            return obj;
+          });
+        }}
+        path={`/${articleID.current}`}
+      />
     </>
   );
 }
@@ -85,3 +111,15 @@ function Content() {
 export default Content;
 
 Content.propTypes = {};
+
+// removeFromOrder={(removedArticle) => {
+//   setArticleData((prevData) => {
+//     const obj = {
+//       ...prevData,
+//     };
+//     obj.article_order = obj.article_order.filter(
+//       (item) => item !== removedArticle
+//     );
+//     return obj;
+//   });
+// }}

@@ -1,0 +1,38 @@
+#addPart {
+  width: 1000px;
+  border-top: 1px dashed rgb(187, 166, 166);
+  padding: 5px 0 0 0;
+  margin: 30px auto 0 auto;
+  height: 60px;
+  display: flex;
+  justify-content: end;
+
+  &:hover {
+    border-top: 2px solid var(--darkRed);
+    margin-top: 29px;
+  }
+
+  .buttons {
+    all: unset;
+
+    transform: translateY(-4.9px);
+    cursor: pointer;
+    margin: 0 4px;
+    padding: 0 7px;
+    text-align: center;
+    line-height: 1px;
+
+    width: 35px;
+    height: 28px;
+
+    color: black;
+    background-color: #e7cbbf;
+    border-radius: 2px 2px 15px 15px;
+
+    &:hover {
+      background-color: rgb(223, 139, 126);
+      color: white;
+      box-shadow: 1px 1px 4px #878787bf;
+    }
+  }
+}

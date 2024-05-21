@@ -80,3 +80,26 @@ export function lastDeco(ref) {
 export function updateData(path, newData) {
   update(child(dbRef, `unfinished${path}`), newData);
 }
+
+export function firebase_addArticle(path, newArticleID, data) {
+  console.log(data);
+
+  get(child(dbRef, `unfinished${path}`))
+    .then((snapshot) => {
+      const articles = snapshot.val().articles;
+      const article_order = snapshot.val().article_order;
+
+      set(ref(database, `unfinished${path}/articles`), {
+        ...articles,
+        [newArticleID]: data,
+      });
+
+      set(ref(database, `unfinished${path}/article_order`), [
+        ...article_order,
+        newArticleID,
+      ]);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
