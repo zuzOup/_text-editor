@@ -89,7 +89,7 @@
   }
 
   &:focus {
-    border: dotted 1px gray;
+    border: dotted 1px rgba(128, 128, 128, 0.5);
   }
 }
 

@@ -10,6 +10,8 @@
   letter-spacing: 1.3px;
   width: 14vw;
   transform: translateX(1.1vw);
+  border: dotted 1px rgba(0, 0, 0, 0);
+  border-radius: 5px;
 
   &::-webkit-calendar-picker-indicator {
     cursor: pointer;
@@ -25,6 +27,6 @@
   }
 
   &:focus {
-    border: dotted 1px gray;
+    border: dotted 1px rgba(128, 128, 128, 0.5);
   }
 }

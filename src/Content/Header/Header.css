@@ -10,7 +10,7 @@
   left: calc((100vw - 1000px) / 4);
   position: absolute;
   top: 18.5vw;
-  background-image: url("index/day.png");
+  background-image: url("day.png");
 
   background-position: center;
   background-repeat: no-repeat;

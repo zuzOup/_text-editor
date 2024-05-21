@@ -3,6 +3,7 @@ import { initialData } from "./firebase/firebaseHelpers";
 
 import Preview from "./Content/Header/Preview";
 import Day from "./Content/Header/Day";
+import Weather from "./Content/Header/Weather";
 import Title from "./Content/Header/Title";
 import Date from "./Content/Header/Date";
 
@@ -22,7 +23,19 @@ function Content() {
     <>
       <Preview preview={articleData.header.preview} articleID={articleID.current} />
       <Day date={articleData.header.date} />
-      {/* <Weather weather={weather} setWeather={setWeather} /> */}
+      <Weather
+        weather={articleData.header.place}
+        setWeather={(updatedWeather) =>
+          setArticleData((prevData) => {
+            const obj = {
+              ...prevData,
+            };
+            obj.header.place = updatedWeather;
+            return obj;
+          })
+        }
+        path={`/${articleID.current}/header/place`}
+      />
       <div className="header">
         <Title
           title={articleData.header.title}

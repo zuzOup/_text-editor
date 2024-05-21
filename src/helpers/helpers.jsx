@@ -9,7 +9,7 @@ export const article = {
   article_order: [],
   header: {
     date: new Date().toISOString().substring(0, 10),
-    place: { latitude: "", longitude: "", place: "Toronto" },
+    place: { latitude: 43.7001, longitude: -79.4163, place: "Toronto" },
     title: "",
     preview: { url: "", alt: "" },
     deco: false,
