@@ -3,23 +3,26 @@ import { useEffect, useRef } from "react";
 
 import "./Title.css";
 
-import { lastDeco, updateData } from "../../../firebase/firebaseHelpers";
+import {
+  firebase_lastDeco,
+  firebase_updateData,
+} from "../../../firebase/firebaseHelpers";
 
 function Title({ title, setTitle, deco, setDeco, path }) {
   const lastDecos = useRef({ vol: "", star: "" });
 
   useEffect(() => {
-    lastDeco(lastDecos);
+    firebase_lastDeco(lastDecos);
   }, []);
 
   const uncheck = (e) => {
     if (e.target.id === deco) {
       e.target.checked = false;
       setDeco(false);
-      updateData(path, { deco: false });
+      firebase_updateData(path, { deco: false });
     } else {
       setDeco(e.target.id);
-      updateData(path, { deco: e.target.id });
+      firebase_updateData(path, { deco: e.target.id });
 
       deco === "star"
         ? setTitle("Volejbalové Kousky Vojtíka ")
@@ -58,7 +61,7 @@ function Title({ title, setTitle, deco, setDeco, path }) {
           className="articleTitle"
           onChange={(e) => {
             setTitle(e.target.value);
-            updateData(path, { title: e.target.value });
+            firebase_updateData(path, { title: e.target.value });
           }}
           value={title}
         />

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-import { logIn } from "../firebase/firebaseHelpers";
+import { firebase_logIn } from "../firebase/firebaseHelpers";
 
 import "./Login.css";
 
@@ -19,7 +19,7 @@ function Login({ setAuth }) {
       loginButton.offsetWidth;
       loginButton.classList.add("buttonError");
     }
-    logIn(setAuth, email, password, setErrorMessage);
+    firebase_logIn(setAuth, email, password, setErrorMessage);
   };
 
   const handleInput = (e, inputSetter) => {

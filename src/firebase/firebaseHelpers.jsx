@@ -10,18 +10,17 @@ const database = getDatabase(app);
 const auth = getAuth(app);
 const dbRef = ref(database);
 
-export function logIn(setter, email, password, setterError) {
+export function firebase_logIn(setter, email, password, setterError) {
   signInWithEmailAndPassword(auth, email, password)
     .then(() => {
       setter(true);
     })
-    .catch((error) => {
+    .catch(() => {
       setterError(true);
-      console.log(error);
     });
 }
 
-export function initialData(setter, ref) {
+export function firebase_initialData(setter, ref) {
   get(child(dbRef, `unfinished`))
     .then((snapshot) => {
       if (snapshot.val() === null) {
@@ -53,7 +52,7 @@ export function initialData(setter, ref) {
     });
 }
 
-export function lastDeco(ref) {
+export function firebase_lastDeco(ref) {
   get(child(dbRef, `published`))
     .then((snapshot) => {
       const sorted = Object.keys(snapshot.val()).sort(
@@ -77,7 +76,7 @@ export function lastDeco(ref) {
     });
 }
 
-export function updateData(path, newData) {
+export function firebase_updateData(path, newData) {
   update(child(dbRef, `unfinished${path}`), newData);
 }
 

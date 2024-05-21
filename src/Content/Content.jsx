@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import { initialData } from "../firebase/firebaseHelpers";
 
 import Preview from "./Header/Preview/Preview";
 import Day from "./Header/Day";
@@ -8,6 +7,7 @@ import Title from "./Header/Title/Title";
 import Date from "./Header/Date/Date";
 
 import { article } from "../helpers/helpers";
+import { firebase_initialData } from "../firebase/firebaseHelpers";
 
 import "./Header/Header.css";
 import AddPart from "./AddPart/AddPart";
@@ -17,7 +17,7 @@ function Content() {
   const articleID = useRef("");
 
   useEffect(() => {
-    initialData(setArticleData, articleID);
+    firebase_initialData(setArticleData, articleID);
   }, []);
 
   return (

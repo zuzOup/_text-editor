@@ -1,4 +1,4 @@
-export const weatherData = [
+export const weather_data = [
   {
     place: "Toronto",
     latitude: 43.7001,
@@ -41,8 +41,8 @@ export const weatherData = [
   },
 ];
 
-export function findMatch(value) {
-  const match = weatherData
+export function weather_findMatch(value) {
+  const match = weather_data
     .filter((data) => {
       const normalized = data.place.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 

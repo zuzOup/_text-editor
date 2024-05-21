@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 
 import "./Weather.css";
 
-import { weatherData, findMatch } from "../../../helpers/helpers-weather";
-import { updateData } from "../../../firebase/firebaseHelpers";
+import { weather_data, weather_findMatch } from "../../../helpers/helpers-weather";
+import { firebase_updateData } from "../../../firebase/firebaseHelpers";
 import { useState } from "react";
 
 function Weather({ weather, setWeather, path }) {
@@ -14,7 +14,7 @@ function Weather({ weather, setWeather, path }) {
     const doc = document.getElementById("weather").value;
 
     return (
-      !weatherData.find((x) => x.place === doc) &&
+      !weather_data.find((x) => x.place === doc) &&
       (document.activeElement === document.getElementById("weather") ||
         document.activeElement.classList.contains("whisper-button"))
     );
@@ -33,7 +33,7 @@ function Weather({ weather, setWeather, path }) {
   };
 
   const weatherChange = (e) => {
-    const data = weatherData.find((x) => x.place === e.target.value);
+    const data = weather_data.find((x) => x.place === e.target.value);
     let latitude = "---";
     let longitude = "---";
 
@@ -42,10 +42,14 @@ function Weather({ weather, setWeather, path }) {
       longitude = data.longitude;
     }
 
-    setWhisper(findMatch(e.target.value));
+    setWhisper(weather_findMatch(e.target.value));
 
     setWeather({ place: e.target.value, latitude: latitude, longitude: longitude });
-    updateData(path, { place: e.target.value, latitude: latitude, longitude: longitude });
+    firebase_updateData(path, {
+      place: e.target.value,
+      latitude: latitude,
+      longitude: longitude,
+    });
 
     setFocus(weatherConditions());
   };
@@ -53,13 +57,13 @@ function Weather({ weather, setWeather, path }) {
   const buttonHandle = (e) => {
     document.getElementById("weather").value = e.target.id;
 
-    const data = weatherData.find((x) => x.place === e.target.id);
+    const data = weather_data.find((x) => x.place === e.target.id);
     setWeather({
       place: e.target.id,
       latitude: data.latitude,
       longitude: data.longitude,
     });
-    updateData(path, {
+    firebase_updateData(path, {
       place: e.target.id,
       latitude: data.latitude,
       longitude: data.longitude,
