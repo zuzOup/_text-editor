@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 
 import "./Weather.css";
 
-import { weatherData, findMatch } from "../../helpers/helpers-weather";
-import { updateData } from "../../firebase/firebaseHelpers";
+import { weatherData, findMatch } from "../../../helpers/helpers-weather";
+import { updateData } from "../../../firebase/firebaseHelpers";
 import { useState } from "react";
 
 function Weather({ weather, setWeather, path }) {

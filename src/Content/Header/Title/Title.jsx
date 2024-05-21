@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 
 import "./Title.css";
 
-import { lastDeco, updateData } from "../../firebase/firebaseHelpers";
+import { lastDeco, updateData } from "../../../firebase/firebaseHelpers";
 
 function Title({ title, setTitle, deco, setDeco, path }) {
   const lastDecos = useRef({ vol: "", star: "" });

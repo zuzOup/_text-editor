@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import "./Date.css";
 
-import { updateData } from "../../firebase/firebaseHelpers";
+import { updateData } from "../../../firebase/firebaseHelpers";
 
 function Date({ date, setDate, path }) {
   const dateChange = (e) => {
