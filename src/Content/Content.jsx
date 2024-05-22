@@ -109,6 +109,24 @@ function Content() {
             return obj;
           });
         }}
+        articleType={(id) => {
+          return articleData.articles[id].article_type;
+        }}
+        articleData={(id) => {
+          return articleData.articles[id];
+        }}
+        modifyArticle={(id, func, value) => {
+          setArticleData((prevData) => {
+            const obj = {
+              ...prevData,
+            };
+
+            const modifiedData = func({ ...obj.articles[id] }, value);
+            obj.articles[id] = modifiedData;
+
+            return obj;
+          });
+        }}
         path={`/${articleID.current}`}
       />
 

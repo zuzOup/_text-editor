@@ -6,7 +6,14 @@ import { CSS } from "@dnd-kit/utilities";
 import Article_switch from "./Article_switch";
 import { firebase_deleteArticle } from "../../firebase/firebaseHelpers";
 
-function Article_outer({ id, deleteArticle, path }) {
+function Article_outer({
+  id,
+  deleteArticle,
+  path,
+  articleType,
+  modifyArticle,
+  articleData,
+}) {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
     id,
   });
@@ -20,7 +27,13 @@ function Article_outer({ id, deleteArticle, path }) {
 
   return (
     <div className="article_outer" ref={setNodeRef} style={style}>
-      <Article_switch id={id} />
+      <Article_switch
+        id={id}
+        articleType={articleType}
+        modifyArticle={modifyArticle}
+        articleData={articleData}
+        path={path}
+      />
       <button className="drag" {...listeners} {...attributes}></button>
       <button className="cancel" onClick={buttonCancel}>
         X
@@ -34,5 +47,8 @@ export default Article_outer;
 Article_outer.propTypes = {
   id: PropTypes.number,
   deleteArticle: PropTypes.func,
+  articleType: PropTypes.func,
+  modifyArticle: PropTypes.func,
+  articleData: PropTypes.func,
   path: PropTypes.string,
 };

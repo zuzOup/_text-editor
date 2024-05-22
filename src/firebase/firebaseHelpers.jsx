@@ -111,15 +111,26 @@ export function firebase_changeArticleOrder(path, newData) {
     });
 }
 
-export function firebase_deleteArticle(path, articleID) {
+export function firebase_deleteArticle(path, id) {
   get(child(dbRef, `unfinished${path}`))
     .then((data) => {
-      const order = [...data.val().article_order].filter((a) => a !== articleID);
+      const order = [...data.val().article_order].filter((a) => a !== id);
+
       const articles = { ...data.val().articles };
-      delete articles[articleID];
+      delete articles[id];
 
       set(ref(database, `unfinished${path}/article_order`), [...order]);
       set(ref(database, `unfinished${path}/articles`), { ...articles });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+export function firebase_modify_text(path, id, newData) {
+  get(child(dbRef, `unfinished${path}`))
+    .then(() => {
+      set(ref(database, `unfinished${path}/articles/${id}/text`), newData);
     })
     .catch((error) => {
       console.error(error);

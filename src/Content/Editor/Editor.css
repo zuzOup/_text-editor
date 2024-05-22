@@ -1,9 +1,9 @@
 #editor {
-  width: 100%;
+  margin: 0 auto;
+  width: 1000px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: left;
 }
 
 .article_outer {
@@ -42,4 +42,10 @@
   .cancel {
     cursor: pointer;
   }
+}
+
+.article {
+  width: 1000px;
+  height: fit-content;
+  border: 1px solid saddlebrown;
 }

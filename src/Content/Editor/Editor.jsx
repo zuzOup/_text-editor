@@ -22,7 +22,15 @@ import "./Editor.css";
 
 import Article_outer from "./Article_outer";
 
-function Editor({ articleOrder, setArticleOrder, path, deleteArticle }) {
+function Editor({
+  articleOrder,
+  setArticleOrder,
+  path,
+  deleteArticle,
+  articleType,
+  modifyArticle,
+  articleData,
+}) {
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -63,6 +71,9 @@ function Editor({ articleOrder, setArticleOrder, path, deleteArticle }) {
               key={article}
               id={article}
               deleteArticle={deleteArticle}
+              modifyArticle={modifyArticle}
+              articleType={articleType}
+              articleData={articleData}
               path={path}
             />
           ))}
@@ -78,5 +89,8 @@ Editor.propTypes = {
   articleOrder: PropTypes.array,
   setArticleOrder: PropTypes.func,
   deleteArticle: PropTypes.func,
+  articleType: PropTypes.func,
+  modifyArticle: PropTypes.func,
+  articleData: PropTypes.func,
   path: PropTypes.string,
 };
