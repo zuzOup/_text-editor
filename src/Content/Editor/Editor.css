@@ -1,0 +1,45 @@
+#editor {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.article_outer {
+  width: 1100px;
+
+  height: fit-content;
+
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  touch-action: none;
+
+  span {
+    display: flex;
+    width: 65px;
+    justify-content: space-between;
+  }
+
+  .drag {
+    all: unset;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(50, 50, 50, 0.1);
+    align-self: flex-start;
+    transform: translateX(-37.5px) translateY(-6px);
+    cursor: grab;
+  }
+
+  .drag:active {
+    cursor: grabbing;
+  }
+
+  .cancel {
+    cursor: pointer;
+  }
+}

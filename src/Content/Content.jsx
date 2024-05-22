@@ -94,6 +94,21 @@ function Content() {
             return obj;
           });
         }}
+        deleteArticle={(articleID) => {
+          setArticleData((prevData) => {
+            const obj = {
+              ...prevData,
+            };
+            const order = [...obj.article_order];
+            obj.article_order = order.filter((a) => a !== articleID);
+
+            const articles = { ...obj.articles };
+            delete articles[articleID];
+            obj.articles = articles;
+
+            return obj;
+          });
+        }}
         path={`/${articleID.current}`}
       />
 

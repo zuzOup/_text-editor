@@ -110,3 +110,18 @@ export function firebase_changeArticleOrder(path, newData) {
       console.error(error);
     });
 }
+
+export function firebase_deleteArticle(path, articleID) {
+  get(child(dbRef, `unfinished${path}`))
+    .then((data) => {
+      const order = [...data.val().article_order].filter((a) => a !== articleID);
+      const articles = { ...data.val().articles };
+      delete articles[articleID];
+
+      set(ref(database, `unfinished${path}/article_order`), [...order]);
+      set(ref(database, `unfinished${path}/articles`), { ...articles });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
