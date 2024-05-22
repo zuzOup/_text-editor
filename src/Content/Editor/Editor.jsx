@@ -53,32 +53,34 @@ function Editor({
 
   return (
     <div id="editor">
-      <DndContext
-        autoScroll={{
-          threshold: {
-            x: 0,
-            y: 0.1,
-          },
-        }}
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext items={articleOrder} strategy={verticalListSortingStrategy}>
-          {articleOrder.map((article) => (
-            <Article_outer
-              handle={true}
-              key={article}
-              id={article}
-              deleteArticle={deleteArticle}
-              modifyArticle={modifyArticle}
-              articleType={articleType}
-              articleData={articleData}
-              path={path}
-            />
-          ))}
-        </SortableContext>
-      </DndContext>
+      {articleOrder.length >= 1 && articleOrder[0] !== 0 && (
+        <DndContext
+          autoScroll={{
+            threshold: {
+              x: 0,
+              y: 0.1,
+            },
+          }}
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext items={articleOrder} strategy={verticalListSortingStrategy}>
+            {articleOrder.map((article) => (
+              <Article_outer
+                handle={true}
+                key={article}
+                id={article}
+                deleteArticle={deleteArticle}
+                modifyArticle={modifyArticle}
+                articleType={articleType}
+                articleData={articleData}
+                path={path}
+              />
+            ))}
+          </SortableContext>
+        </DndContext>
+      )}
     </div>
   );
 }

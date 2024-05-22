@@ -16,6 +16,20 @@ export const article = {
   },
 };
 
+export const article_fb = {
+  published: false,
+  dateInTitle: true,
+  articles: { 0: false },
+  article_order: [0],
+  header: {
+    date: new Date().toISOString().substring(0, 10),
+    place: { latitude: 43.7001, longitude: -79.4163, place: "Toronto" },
+    title: "",
+    preview: { url: "", alt: "" },
+    deco: false,
+  },
+};
+
 export function chopOffEnds(text, begin, end) {
   return text.split(begin)[1].split(end)[0];
 }

@@ -3,7 +3,7 @@ import { getDatabase, ref, set, child, get, update } from "firebase/database";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseConfig } from "./config";
 
-import { article, chopOffEnds } from "../helpers/helpers";
+import { article, article_fb, chopOffEnds } from "../helpers/helpers";
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
@@ -23,32 +23,28 @@ export function firebase_logIn(setter, email, password, setterError) {
 export function firebase_initialData(setter, ref) {
   get(child(dbRef, `unfinished`))
     .then((snapshot) => {
-      if (snapshot.val() === null) {
-        const dateID = `${Date.now()}`;
-        set(ref(database, "unfinished"), {
-          ...snapshot.val(),
-          [dateID]: article,
-        });
-        ref.current = dateID;
-      } else {
-        const latest = Math.max(...Object.keys(snapshot.val()).map((x) => parseInt(x)));
+      const latest = Math.max(...Object.keys(snapshot.val()).map((x) => parseInt(x)));
 
-        const articleData = snapshot.val()[latest];
+      const articleData = snapshot.val()[latest];
 
-        if (articleData.header.title.includes("🏐")) {
-          articleData.header.deco = "vol";
-          articleData.header.title = chopOffEnds(articleData.header.title, "🏐 ", " 🏐");
-        } else if (articleData.header.title.includes("✮")) {
-          articleData.header.deco = "star";
-          articleData.header.title = chopOffEnds(articleData.header.title, "✮ ", " ✮");
-        }
-
-        setter(articleData);
-        ref.current = `${latest}`;
+      if (articleData.header.title.includes("🏐")) {
+        articleData.header.deco = "vol";
+        articleData.header.title = chopOffEnds(articleData.header.title, "🏐 ", " 🏐");
+      } else if (articleData.header.title.includes("✮")) {
+        articleData.header.deco = "star";
+        articleData.header.title = chopOffEnds(articleData.header.title, "✮ ", " ✮");
       }
+
+      setter(articleData);
+      ref.current = `${latest}`;
     })
-    .catch((error) => {
-      console.error(error);
+    .catch(() => {
+      const dateID = `${Date.now()}`;
+      const newData = { unfinished: { [dateID]: article_fb } };
+
+      update(dbRef, newData);
+
+      ref.current = dateID;
     });
 }
 
@@ -86,15 +82,23 @@ export function firebase_addArticle(path, newArticleID, data) {
       const articles = snapshot.val().articles;
       const article_order = snapshot.val().article_order;
 
-      set(ref(database, `unfinished${path}/articles`), {
-        ...articles,
-        [newArticleID]: data,
-      });
+      if (article_order.length === 1 && article_order[0] === 0) {
+        set(ref(database, `unfinished${path}/articles`), {
+          [newArticleID]: data,
+        });
 
-      set(ref(database, `unfinished${path}/article_order`), [
-        ...article_order,
-        newArticleID,
-      ]);
+        set(ref(database, `unfinished${path}/article_order`), [newArticleID]);
+      } else {
+        set(ref(database, `unfinished${path}/articles`), {
+          ...articles,
+          [newArticleID]: data,
+        });
+
+        set(ref(database, `unfinished${path}/article_order`), [
+          ...article_order,
+          newArticleID,
+        ]);
+      }
     })
     .catch((error) => {
       console.error(error);
@@ -119,8 +123,13 @@ export function firebase_deleteArticle(path, id) {
       const articles = { ...data.val().articles };
       delete articles[id];
 
-      set(ref(database, `unfinished${path}/article_order`), [...order]);
-      set(ref(database, `unfinished${path}/articles`), { ...articles });
+      if (order.length !== 0) {
+        set(ref(database, `unfinished${path}/article_order`), [...order]);
+        set(ref(database, `unfinished${path}/articles`), { ...articles });
+      } else {
+        set(ref(database, `unfinished${path}/article_order`), [0]);
+        set(ref(database, `unfinished${path}/articles`), { 0: false });
+      }
     })
     .catch((error) => {
       console.error(error);
