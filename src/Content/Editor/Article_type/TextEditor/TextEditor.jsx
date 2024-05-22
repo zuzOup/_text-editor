@@ -8,13 +8,10 @@ import { modifier_text } from "../../../../helpers/helpers-modifiers";
 import { firebase_modify_text } from "../../../../firebase/firebaseHelpers";
 
 import "./TextEditor.css";
-import { article } from "../../../../helpers/helpers";
 
 const toBeReplaced = ["<p>", "</p>"];
 
 function TextEditor({ id, modifyArticle, articleData, path }) {
-  console.log(articleData(id));
-
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -23,25 +20,12 @@ function TextEditor({ id, modifyArticle, articleData, path }) {
       }),
     ],
 
-    content: "ahoj",
+    content: articleData(id).text,
     onUpdate({ editor }) {
-      console.log();
-
-      /*
-     if(articleData.)
-
-      modifyArticle(id, modifier_text, e.target.value);
-      setArticles((articles) => {
-        let string = editor.getHTML();
-        toBeReplaced.forEach((item) => {
-          string = string.replace(item, "");
-        });
-
-        const obj = { ...articles };
-        obj[article] = { ...obj[article], text: string };
-
-        return obj;
-      });*/
+      let string = editor.getHTML();
+      toBeReplaced.forEach((item) => (string = string.replace(item, "")));
+      firebase_modify_text(path, id, string);
+      modifyArticle(id, modifier_text, string);
     },
   });
 
@@ -98,4 +82,9 @@ function TextEditor({ id, modifyArticle, articleData, path }) {
 
 export default TextEditor;
 
-TextEditor.propTypes = { prop: PropTypes.any };
+TextEditor.propTypes = {
+  id: PropTypes.number,
+  modifyArticle: PropTypes.func,
+  articleData: PropTypes.func,
+  path: PropTypes.string,
+};

@@ -110,7 +110,6 @@ function Content() {
           });
         }}
         articleType={(id) => {
-          console.log(id);
           return articleData.articles[id].article_type;
         }}
         articleData={(id) => {

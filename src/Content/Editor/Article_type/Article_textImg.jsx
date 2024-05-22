@@ -1,11 +1,26 @@
 import PropTypes from "prop-types";
 
-function Article_textImg({ prop }) {
-  // console.log(`🌸Article_textImg🌸`)
+import TextEditor from "./TextEditor/TextEditor";
 
-  return <div className="article">Article_textImg</div>;
+function Article_textImg({ id, modifyArticle, articleData, path }) {
+  return (
+    <div className="article">
+      txt Img
+      <TextEditor
+        modifyArticle={modifyArticle}
+        id={id}
+        articleData={articleData}
+        path={path}
+      />
+    </div>
+  );
 }
 
 export default Article_textImg;
 
-Article_textImg.propTypes = { prop: PropTypes.any };
+Article_textImg.propTypes = {
+  id: PropTypes.number,
+  modifyArticle: PropTypes.func,
+  articleData: PropTypes.func,
+  path: PropTypes.string,
+};

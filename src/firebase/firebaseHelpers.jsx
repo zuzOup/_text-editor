@@ -3,7 +3,7 @@ import { getDatabase, ref, set, child, get, update } from "firebase/database";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseConfig } from "./config";
 
-import { article, article_fb, chopOffEnds } from "../helpers/helpers";
+import { article_fb, chopOffEnds } from "../helpers/helpers";
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
@@ -136,12 +136,6 @@ export function firebase_deleteArticle(path, id) {
     });
 }
 
-export function firebase_modify_text(path, id, newData) {
-  get(child(dbRef, `unfinished${path}`))
-    .then(() => {
-      set(ref(database, `unfinished${path}/articles/${id}/text`), newData);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+export function firebase_modify_text(path, id, value) {
+  update(child(dbRef, `unfinished${path}/articles/${id}`), { text: value });
 }
