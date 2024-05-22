@@ -110,6 +110,7 @@ function Content() {
           });
         }}
         articleType={(id) => {
+          console.log(id);
           return articleData.articles[id].article_type;
         }}
         articleData={(id) => {
@@ -132,24 +133,16 @@ function Content() {
 
       {/*---------------------------------------------------------------------------------------------- */}
       <AddPart
-        addToOrder={(newArticle) =>
+        addArticle={(id, button) =>
           setArticleData((prevData) => {
             const obj = {
               ...prevData,
             };
-            obj.article_order.push(newArticle);
+            obj.article_order.push(id);
+            obj.articles[id] = button;
             return obj;
           })
         }
-        addToArticles={(newArticle, button) => {
-          setArticleData((prevData) => {
-            const obj = {
-              ...prevData,
-              [newArticle]: [button],
-            };
-            return obj;
-          });
-        }}
         path={`/${articleID.current}`}
       />
     </>

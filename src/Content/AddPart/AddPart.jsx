@@ -6,7 +6,7 @@ import { firebase_addArticle } from "../../firebase/firebaseHelpers";
 
 import "./AddPart.css";
 
-function AddPart({ addToOrder, addToArticles, path }) {
+function AddPart({ addArticle, path }) {
   const [showButtons, setShowButtons] = useState(false);
 
   const buttonShow = () => {
@@ -17,8 +17,7 @@ function AddPart({ addToOrder, addToArticles, path }) {
 
   const buttonHandle = (button) => {
     const id = idStamp();
-    addToOrder(id);
-    addToArticles(id, button);
+    addArticle(id, button);
     firebase_addArticle(path, id, button);
   };
 
@@ -30,7 +29,7 @@ function AddPart({ addToOrder, addToArticles, path }) {
             <button
               className="buttons"
               key={button.name}
-              onClick={() => {
+              onMouseDown={() => {
                 buttonHandle(button.obj);
               }}
             >
@@ -45,7 +44,6 @@ function AddPart({ addToOrder, addToArticles, path }) {
 export default AddPart;
 
 AddPart.propTypes = {
-  addToOrder: PropTypes.func,
-  addToArticles: PropTypes.func,
+  addArticle: PropTypes.func,
   path: PropTypes.string,
 };

@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 
 import { modifier_text } from "../../../helpers/helpers-modifiers";
 import { firebase_modify_text } from "../../../firebase/firebaseHelpers";
+import TextEditor from "./TextEditor/TextEditor";
 
 function Article_text({ id, modifyArticle, articleData, path }) {
   const textHandle = (e) => {
@@ -12,6 +13,12 @@ function Article_text({ id, modifyArticle, articleData, path }) {
   return (
     <div className="article">
       <input value={articleData(id).text} onChange={textHandle}></input>
+      <TextEditor
+        modifyArticle={modifyArticle}
+        id={id}
+        articleData={articleData}
+        path={path}
+      />
     </div>
   );
 }
