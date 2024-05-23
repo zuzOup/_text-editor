@@ -15,6 +15,20 @@ export async function setInitialHeight(url, set, width) {
   if (url !== "") {
     const source = src(url, width);
 
+    /*TODO: REMOVE!!!!!!!! */
+    if (
+      url ===
+      `https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?`
+    ) {
+      const initialHeight = await preloadImage(
+        `https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?w=${width}`
+      );
+      set(initialHeight);
+      return;
+    }
+
+    /*-----*/
+
     try {
       const initialHeight = await preloadImage(source);
       set(initialHeight);
@@ -64,8 +78,18 @@ export function src(url, size) {
   return newUrl;
 }
 
-export const text = {
-  txtImg: function (data) {
-    return data.url === "" ? "Přidat img ↗" : "Upravit ↗";
-  },
+export const validUrl = (target) => {
+  if (target === "") return true;
+  if (target.lenght < 8) return false;
+
+  const string = "https://";
+  for (let i = 0; i < 8; i++) {
+    if (target[i] !== string[i]) return false;
+  }
+
+  return (
+    target.includes("https://drive.google.com/file/d/") ||
+    target.includes("https://lh3.google.com/u/5/d/") ||
+    target.includes("https://drive.google.com/thumbnail?id=")
+  );
 };

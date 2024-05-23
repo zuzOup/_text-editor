@@ -4,37 +4,38 @@
 }
 
 .article_textImg {
-     .float-div {
-       width: 150px;
-       min-height: 30px;
-       border-radius: 2px;
-       box-shadow: 1px 1px 5px #bfbfbfbf;
-       background-size: contain;
-       background-position: center;
-     }
-   
-     .float-div-right {
-       float: right;
-       margin: 5px 0 0 20px;
-     }
-   
-     .float-div-left {
-       float: left;
-       margin: 5px 20px 0 0;
-     }
-   
-     .txtImg_modalButtonContainer {
-       position: relative;
-       z-index: 10;
-       height: 0px;
-       top: 5px;
-     }
-   
-     .txtImg_modalButtonContainer-right {
-       left: 850px;
-     }
-   
-     .txtImg_modalButtonContainer-left {
-       left: -170px;
-     }
-   }
+  .float-div {
+    width: 150px;
+    min-height: 30px;
+    border-radius: 2px;
+    box-shadow: 1px 1px 5px #bfbfbfbf;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .float-div-right {
+    float: right;
+    margin: 5px 0 0 20px;
+  }
+
+  .float-div-left {
+    float: left;
+    margin: 5px 20px 0 0;
+  }
+
+  .txtImg_modalButtonContainer {
+    position: relative;
+    z-index: 10;
+    height: 0px;
+    top: 5px;
+  }
+
+  .txtImg_modalButtonContainer-right {
+    left: 850px;
+  }
+
+  .txtImg_modalButtonContainer-left {
+    left: -170px;
+  }
+}

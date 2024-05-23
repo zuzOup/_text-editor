@@ -5,6 +5,7 @@
   text-align: center;
   min-height: 30px;
   font-style: italic;
+  color: #c04b40;
 
   &:hover {
     background-color: #742d263b;

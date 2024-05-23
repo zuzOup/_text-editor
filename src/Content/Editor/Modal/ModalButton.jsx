@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { useState } from "react";
 
 import "./ModalButton.css";
+import "./Modal.css";
 
 function ModalButton({ children, text, type, height, width }) {
   const [isModalVisible, setModalVisible] = useState(false);

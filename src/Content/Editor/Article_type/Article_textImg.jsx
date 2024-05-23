@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 
 import TextEditor from "./TextEditor/TextEditor";
 import ModalButton from "../Modal/ModalButton";
-import Modal_textImg from "../Modal/Modal_textImg";
+import Modal_textImg from "../Modal/Modal_txtImg/Modal_textImg";
 
-import { src, setInitialHeight, text } from "../../../helpers/helpers-articles";
+import { src, setInitialHeight } from "../../../helpers/helpers-articles";
+import { text } from "../../../helpers/helpers-modifiers";
 
 function Article_textImg({ id, modifyArticle, articleData, path }) {
   const [height, setHeight] = useState(30);
@@ -32,12 +33,18 @@ function Article_textImg({ id, modifyArticle, articleData, path }) {
         }`}
       >
         <ModalButton
-          text={text.txtImg(articleData(id).img)}
+          text={text.img(articleData(id).img)}
           type={articleData(id).article_type}
           height={height}
           width={"150px"}
         >
-          <Modal_textImg />
+          <Modal_textImg
+            modifyArticle={modifyArticle}
+            id={id}
+            url={articleData(id).img.url}
+            setHeight={setHeight}
+            path={path}
+          />
         </ModalButton>
       </div>
       <TextEditor

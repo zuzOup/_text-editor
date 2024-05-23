@@ -139,3 +139,10 @@ export function firebase_deleteArticle(path, id) {
 export function firebase_modify_text(path, id, value) {
   update(child(dbRef, `unfinished${path}/articles/${id}`), { text: value });
 }
+
+export function firebase_modify_img_url(path, id, value) {
+  console.log(value);
+  console.log(`unfinished${path}/articles/${id}/img`);
+
+  update(child(dbRef, `unfinished${path}/articles/${id}/img`), { url: value });
+}

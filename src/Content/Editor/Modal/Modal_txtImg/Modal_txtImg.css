@@ -1,0 +1,18 @@
+.clear_txtImg {
+  left: calc(50% + 230px);
+  top: calc(50% - 137px);
+}
+
+.modal_txtImg {
+  width: 500px;
+
+  .switchSpan {
+    & > p {
+      font-size: 14px;
+    }
+
+    & > div {
+      width: 150px;
+    }
+  }
+}
