@@ -47,7 +47,7 @@ function Modal_textImg({
         </div>
       </div>
       <button className="clear clear_txtImg" onClick={clearHandle}>
-        O
+        <div></div>
       </button>
     </>
   );

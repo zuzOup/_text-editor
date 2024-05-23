@@ -103,8 +103,23 @@
   height: 15px;
   width: 15px;
   border-radius: 50%;
-  background-color: black;
+
   position: absolute;
+
+  & > div {
+    cursor: pointer;
+    width: 90%;
+    height: 90%;
+    background-image: url("/editor/clear.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.2s ease-in-out;
+  }
+  & > div:hover {
+    transform-origin: center;
+    transform: rotate(-45deg);
+  }
 }
 
 .alert {
