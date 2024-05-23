@@ -23,7 +23,7 @@
 
   &:hover {
     cursor: text;
-    text-shadow: 1px 0px 0px rgb(77, 75, 75);
+    text-shadow: 0.5px 0px 0px #c04b40;
   }
 
   &:focus {

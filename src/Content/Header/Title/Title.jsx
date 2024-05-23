@@ -24,9 +24,13 @@ function Title({ title, setTitle, deco, setDeco, path }) {
       setDeco(e.target.id);
       firebase_updateData(path, { deco: e.target.id });
 
-      deco === "star"
-        ? setTitle("Volejbalové Kousky Vojtíka ")
-        : setTitle("Internetové hvězdičky ");
+      if (e.target.id === "star") {
+        setTitle("Internetové hvězdičky ");
+        firebase_updateData(path, { title: "Internetové hvězdičky " });
+      } else if (e.target.id === "vol") {
+        setTitle("Volejbalové Kousky Vojtíka ");
+        firebase_updateData(path, { title: "Volejbalové Kousky Vojtíka " });
+      }
     }
   };
 
