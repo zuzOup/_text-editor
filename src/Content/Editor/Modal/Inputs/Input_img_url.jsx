@@ -43,6 +43,5 @@ Input_img_url.propTypes = {
   setHeight: PropTypes.func,
   id: PropTypes.number,
   modifyArticle: PropTypes.func,
-  articleData: PropTypes.func,
   path: PropTypes.string,
 };

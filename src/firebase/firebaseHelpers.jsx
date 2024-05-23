@@ -141,8 +141,16 @@ export function firebase_modify_text(path, id, value) {
 }
 
 export function firebase_modify_img_url(path, id, value) {
-  console.log(value);
-  console.log(`unfinished${path}/articles/${id}/img`);
-
   update(child(dbRef, `unfinished${path}/articles/${id}/img`), { url: value });
 }
+export function firebase_modify_img_alt(path, id, value) {
+  update(child(dbRef, `unfinished${path}/articles/${id}/img`), { alt: value });
+}
+
+export const firebase_clear = {
+  txtImg: function (path, id) {
+    update(child(dbRef, `unfinished${path}/articles/${id}`), {
+      img: { alt: "", url: "", float: "right" },
+    });
+  },
+};

@@ -42,6 +42,7 @@ function Article_textImg({ id, modifyArticle, articleData, path }) {
             modifyArticle={modifyArticle}
             id={id}
             url={articleData(id).img.url}
+            alt={articleData(id).img.alt}
             setHeight={setHeight}
             path={path}
           />

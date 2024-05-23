@@ -1,11 +1,17 @@
 import PropTypes from "prop-types";
 
-import "./Modal_txtImg.css";
 import Input_img_url from "../Inputs/Input_img_url";
+import Input_img_alt from "../Inputs/Input_img_alt";
 
-function Modal_textImg({ setHeight, url, modifyArticle, id, path }) {
-  const clearHandle = (e) => {
-    console.log(e.target);
+import { clear } from "../../../../helpers/helpers-modifiers";
+import { firebase_clear } from "../../../../firebase/firebaseHelpers";
+
+import "./Modal_txtImg.css";
+
+function Modal_textImg({ setHeight, url, alt, modifyArticle, id, path }) {
+  const clearHandle = () => {
+    modifyArticle(id, clear.txtImg, "");
+    firebase_clear.txtImg(path, id);
   };
 
   return (
@@ -19,7 +25,7 @@ function Modal_textImg({ setHeight, url, modifyArticle, id, path }) {
             id={id}
             path={path}
           />
-          <input value="alt"></input>
+          <Input_img_alt modifyArticle={modifyArticle} id={id} path={path} alt={alt} />
           <input value="float"></input>
           <input value="hotovo"></input>
         </div>
@@ -35,6 +41,7 @@ export default Modal_textImg;
 
 Modal_textImg.propTypes = {
   url: PropTypes.string,
+  alt: PropTypes.string,
   setHeight: PropTypes.func,
   id: PropTypes.number,
   modifyArticle: PropTypes.func,
