@@ -20,6 +20,14 @@ export function modifier_alt(data, value) {
   return obj;
 }
 
+export function modifier_float(data, value) {
+  const obj = { ...data };
+  const img = { ...data.img };
+  img.float = value;
+  obj.img = { ...img };
+  return obj;
+}
+
 export const clear = {
   txtImg: function (data, value) {
     const obj = { ...data };

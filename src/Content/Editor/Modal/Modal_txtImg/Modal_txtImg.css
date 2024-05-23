@@ -11,8 +11,35 @@
       font-size: 14px;
     }
 
+    & > button {
+      all: unset;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--darkRed);
+      }
+    }
+
     & > div {
       width: 150px;
+      margin: 0 25px;
+      background-color: var(--input);
+      border: 1px solid #c04b4030;
+      border-radius: 2px;
+
+      & > input {
+        all: unset;
+        margin: 3px;
+        width: 30px;
+        height: 15px;
+        background-color: #c04b40e1;
+        transition: all 0.4s;
+        border-radius: 2px;
+      }
+
+      & > input.right {
+        transform: translateX(114px);
+      }
     }
   }
 }

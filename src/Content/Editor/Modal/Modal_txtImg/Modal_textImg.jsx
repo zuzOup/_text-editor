@@ -7,8 +7,9 @@ import { clear } from "../../../../helpers/helpers-modifiers";
 import { firebase_clear } from "../../../../firebase/firebaseHelpers";
 
 import "./Modal_txtImg.css";
+import Input_txtImg_float from "../Inputs/Input_txtImg_float";
 
-function Modal_textImg({ setHeight, url, alt, modifyArticle, id, path }) {
+function Modal_textImg({ setHeight, url, alt, float, modifyArticle, id, path }) {
   const clearHandle = () => {
     modifyArticle(id, clear.txtImg, "");
     firebase_clear.txtImg(path, id);
@@ -26,7 +27,12 @@ function Modal_textImg({ setHeight, url, alt, modifyArticle, id, path }) {
             path={path}
           />
           <Input_img_alt modifyArticle={modifyArticle} id={id} path={path} alt={alt} />
-          <input value="float"></input>
+          <Input_txtImg_float
+            modifyArticle={modifyArticle}
+            id={id}
+            path={path}
+            float={float}
+          />
           <input value="hotovo"></input>
         </div>
       </div>
@@ -42,6 +48,7 @@ export default Modal_textImg;
 Modal_textImg.propTypes = {
   url: PropTypes.string,
   alt: PropTypes.string,
+  float: PropTypes.string,
   setHeight: PropTypes.func,
   id: PropTypes.number,
   modifyArticle: PropTypes.func,

@@ -147,6 +147,10 @@ export function firebase_modify_img_alt(path, id, value) {
   update(child(dbRef, `unfinished${path}/articles/${id}/img`), { alt: value });
 }
 
+export function firebase_modify_txtImg_float(path, id, value) {
+  update(child(dbRef, `unfinished${path}/articles/${id}/img`), { float: value });
+}
+
 export const firebase_clear = {
   txtImg: function (path, id) {
     update(child(dbRef, `unfinished${path}/articles/${id}`), {
