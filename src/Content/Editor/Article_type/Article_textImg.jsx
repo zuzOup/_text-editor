@@ -2,18 +2,20 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
 import TextEditor from "./TextEditor/TextEditor";
-import ModalButton_img from "../ModalButton/ModalButton_img";
+import ModalButton from "../Modal/ModalButton";
+import Modal_textImg from "../Modal/Modal_textImg";
 
-import { src, setInitialHeight } from "../../../helpers/helpers-articles";
+import { src, setInitialHeight, text } from "../../../helpers/helpers-articles";
 
 function Article_textImg({ id, modifyArticle, articleData, path }) {
-  const [height, setHeight] = useState(0);
+  const [height, setHeight] = useState(30);
 
   useEffect(() => {
     setInitialHeight(articleData(id).img.url, setHeight, 150);
   }, []);
 
   const style = {
+    minHeight: `30px`,
     height: `${height}px`,
     backgroundImage: `url('${src(articleData(id).img.url, 150)}')`,
   };
@@ -29,12 +31,14 @@ function Article_textImg({ id, modifyArticle, articleData, path }) {
           articleData(id).img.float
         }`}
       >
-        <ModalButton_img
-          id={id}
-          articleData={articleData}
-          path={path}
-          modifyArticle={modifyArticle}
-        />
+        <ModalButton
+          text={text.txtImg(articleData(id).img)}
+          type={articleData(id).article_type}
+          height={height}
+          width={"150px"}
+        >
+          <Modal_textImg />
+        </ModalButton>
       </div>
       <TextEditor
         modifyArticle={modifyArticle}

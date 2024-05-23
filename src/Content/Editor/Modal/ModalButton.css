@@ -1,0 +1,13 @@
+.modalButton {
+  all: unset;
+  cursor: pointer;
+  border-radius: 2px;
+  text-align: center;
+  min-height: 30px;
+  font-style: italic;
+
+  &:hover {
+    background-color: #742d263b;
+    color: white;
+  }
+}

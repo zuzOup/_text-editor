@@ -83,10 +83,11 @@
 
 .bubble-menu {
   display: flex;
-  background-color: var(--darkRed);
+  background-color: var(--inputActive);
+  border: 1px dotted var(--darkRed);
   height: 25px;
   padding: 0.2rem;
-  border-radius: 0.5rem;
+  border-radius: 5px;
 
   button {
     border: none;

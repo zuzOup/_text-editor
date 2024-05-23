@@ -19,7 +19,7 @@ export async function setInitialHeight(url, set, width) {
       const initialHeight = await preloadImage(source);
       set(initialHeight);
     } catch (e) {
-      set(0);
+      set(30);
     }
   }
 }
@@ -63,3 +63,9 @@ export function src(url, size) {
 
   return newUrl;
 }
+
+export const text = {
+  txtImg: function (data) {
+    return data.url === "" ? "Přidat img ↗" : "Upravit ↗";
+  },
+};
