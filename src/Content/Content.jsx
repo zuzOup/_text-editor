@@ -22,7 +22,6 @@ function Content() {
   useEffect(() => {
     firebase_initialData(setArticleData, articleID);
   }, []);
-
   return (
     <>
       {/*-------------------------------------------  Header  ------------------------------------------- */}

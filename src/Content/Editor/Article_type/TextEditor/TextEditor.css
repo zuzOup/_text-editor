@@ -1,8 +1,13 @@
 .tiptap {
   border: dotted 1px rgba(0, 0, 0, 0);
+  border-radius: 2px;
 
   p {
     text-align: justify;
+    margin: 0;
+    font-size: 1.4vw;
+    font-weight: 300;
+    line-height: 1.4;
   }
 
   .is-editor-empty:first-child::before {
@@ -16,7 +21,7 @@
 
 .tiptap:active,
 .tiptap:focus {
-  border: dotted 1px brown;
+  border: dotted 1px rgba(128, 128, 128, 0.5);
 }
 
 [contenteditable] {
@@ -78,7 +83,7 @@
 
 .bubble-menu {
   display: flex;
-  background-color: #370200;
+  background-color: var(--darkRed);
   height: 25px;
   padding: 0.2rem;
   border-radius: 0.5rem;
@@ -88,7 +93,7 @@
     background: none;
     color: #fff;
 
-    opacity: 0.8;
+    opacity: 0.85;
 
     border-radius: 3px;
     height: 20px;

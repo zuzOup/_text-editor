@@ -11,7 +11,7 @@
 
   height: fit-content;
 
-  margin: 20px 0;
+  margin: 0 0 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,10 +42,4 @@
   .cancel {
     cursor: pointer;
   }
-}
-
-.article {
-  width: 1000px;
-  height: fit-content;
-  border: 1px solid saddlebrown;
 }

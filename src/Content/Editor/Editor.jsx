@@ -19,6 +19,7 @@ import {
 import { firebase_changeArticleOrder } from "../../firebase/firebaseHelpers";
 
 import "./Editor.css";
+import "./Article_type/Article.css";
 
 import Article_outer from "./Article_outer";
 

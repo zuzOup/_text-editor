@@ -32,20 +32,20 @@ function TextEditor({ id, modifyArticle, articleData, path }) {
   if (!editor) {
     return null;
   }
-  /*
+
   const undoRedoClassname = () => {
-    if (txt_img) {
+    /*if (txt_img) {
       return editor.isFocused
         ? `undoRedo URtxt_img UR-${articles[article].img.float}`
         : `undoRedo URfocused URtxt_img UR-${articles[article].img.float}`;
-    }
+    }*/
     return editor.isFocused ? "undoRedo" : "undoRedo URfocused";
-  };*/
+  };
 
   return (
     <>
       {
-        <div className="undoRedo">
+        <div className={undoRedoClassname()}>
           <button onClick={() => editor.chain().focus().undo().run()}></button>
           <button onClick={() => editor.chain().focus().redo().run()}></button>
         </div>
