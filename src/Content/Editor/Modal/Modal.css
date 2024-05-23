@@ -60,7 +60,42 @@
 }
 
 .done {
-  font-size: 14px;
+  font-size: 12px;
+
+  cursor: pointer;
+  width: 90px;
+  height: 30px;
+  margin: 3% 0 0 0;
+  align-self: center;
+  border-radius: 5px;
+  border: none;
+  font-style: italic;
+  font-family: var(--fontText);
+
+  background-size: 300% 100%;
+  background-image: linear-gradient(
+    to right,
+    #fdfcfa,
+    #e2b7ad,
+    rgb(226, 183, 173),
+    #fdfcfa
+  );
+  box-shadow: 0 2px 7.5px 0 rgba(226, 183, 173, 0.65);
+  transition: background-position 0.4s ease-in-out;
+
+  &:hover {
+    background-position: 100% 0;
+    color: var(--darkRed);
+  }
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 7.5px 0 rgba(226, 183, 173, 0.807);
+  }
+
+  &.buttonError {
+    animation: shake-horizontal 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  }
 }
 
 .clear {

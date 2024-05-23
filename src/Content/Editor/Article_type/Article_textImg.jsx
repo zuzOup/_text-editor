@@ -13,7 +13,7 @@ function Article_textImg({ id, modifyArticle, articleData, path }) {
 
   useEffect(() => {
     setInitialHeight(articleData(id).img.url, setHeight, 150);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const style = {
     minHeight: `30px`,

@@ -8,8 +8,18 @@ import { firebase_clear } from "../../../../firebase/firebaseHelpers";
 
 import "./Modal_txtImg.css";
 import Input_txtImg_float from "../Inputs/Input_txtImg_float";
+import Input_hotovo from "../Inputs/Input_hotovo";
 
-function Modal_textImg({ setHeight, url, alt, float, modifyArticle, id, path }) {
+function Modal_textImg({
+  setHeight,
+  url,
+  alt,
+  float,
+  modifyArticle,
+  id,
+  path,
+  toggleModal,
+}) {
   const clearHandle = () => {
     modifyArticle(id, clear.txtImg, "");
     firebase_clear.txtImg(path, id);
@@ -33,7 +43,7 @@ function Modal_textImg({ setHeight, url, alt, float, modifyArticle, id, path }) 
             path={path}
             float={float}
           />
-          <input value="hotovo"></input>
+          <Input_hotovo toggleModal={toggleModal} />
         </div>
       </div>
       <button className="clear clear_txtImg" onClick={clearHandle}>
@@ -53,4 +63,5 @@ Modal_textImg.propTypes = {
   id: PropTypes.number,
   modifyArticle: PropTypes.func,
   path: PropTypes.string,
+  toggleModal: PropTypes.func,
 };
