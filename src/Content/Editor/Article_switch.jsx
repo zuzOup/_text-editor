@@ -41,7 +41,14 @@ function Article_switch({ id, articleType, modifyArticle, articleData, path }) {
     case "yt":
       return <Article_yt modifyArticle={modifyArticle} />;
     case "link":
-      return <Article_link modifyArticle={modifyArticle} />;
+      return (
+        <Article_link
+          modifyArticle={modifyArticle}
+          id={id}
+          articleData={articleData}
+          path={path}
+        />
+      );
     default:
       return null;
   }

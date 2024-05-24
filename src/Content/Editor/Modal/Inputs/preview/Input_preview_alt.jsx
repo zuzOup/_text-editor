@@ -10,11 +10,11 @@ function Input_preview_alt({ alt, path, modifyPreview }) {
 
   return (
     <span>
-      <label htmlFor="alt_input">alt: </label>
+      <label htmlFor="alt_input_prew">alt: </label>
       <input
         type="text"
-        id="alt_input"
-        name="alt_input"
+        id="alt_input_prew"
+        name="alt_input_prew"
         placeholder="..."
         value={alt}
         onChange={onChangeHandle}

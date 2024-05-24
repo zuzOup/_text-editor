@@ -5,15 +5,29 @@
   text-align: center;
   min-height: 30px;
   font-style: italic;
-  color: #c04b40;
+  color: var(--darkRed);
 
   &:hover {
     background-color: #742d263b;
     color: white;
+
+    em {
+      color: white;
+    }
   }
 }
 
 .modalButton_img {
   display: block;
   width: 1000px;
+}
+
+.modalButton_link {
+  font-size: 1.4vw;
+
+  em {
+    color: rgb(230, 86, 47);
+    font-style: normal;
+    text-decoration: underline;
+  }
 }

@@ -9,12 +9,6 @@ import "./AddPart.css";
 function AddPart({ addArticle, path }) {
   const [showButtons, setShowButtons] = useState(false);
 
-  const buttonShow = () => {
-    setShowButtons((state) => {
-      return !state;
-    });
-  };
-
   const buttonHandle = (button) => {
     const id = idStamp();
     addArticle(id, button);
@@ -22,7 +16,15 @@ function AddPart({ addArticle, path }) {
   };
 
   return (
-    <div id="addPart" onMouseEnter={buttonShow} onMouseLeave={buttonShow}>
+    <div
+      id="addPart"
+      onMouseEnter={() => {
+        setShowButtons(true);
+      }}
+      onMouseLeave={() => {
+        setShowButtons(false);
+      }}
+    >
       {showButtons &&
         buttons.map((button) => {
           return (

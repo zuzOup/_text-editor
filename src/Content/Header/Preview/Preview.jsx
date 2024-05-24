@@ -19,8 +19,8 @@ function Preview({ previewData, modifyPreview, path }) {
         <ModalButton
           text={text.img(previewData)}
           type={"preview"}
-          height={52.5}
           width={"70px"}
+          height={"100%"}
         >
           <Modal_preview
             modifyPreview={modifyPreview}
@@ -38,6 +38,6 @@ export default Preview;
 
 Preview.propTypes = {
   previewData: PropTypes.shape({ alt: PropTypes.string, url: PropTypes.string }),
-  modifyPreview: PropTypes.func,
+  modifyPreview: PropTypes.shape({ alt: PropTypes.func, url: PropTypes.func }),
   path: PropTypes.string,
 };

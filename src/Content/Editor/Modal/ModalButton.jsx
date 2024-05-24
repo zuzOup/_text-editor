@@ -5,7 +5,7 @@ import { useState, cloneElement } from "react";
 import "./ModalButton.css";
 import "./Modal.css";
 
-function ModalButton({ children, text, type, height, width }) {
+function ModalButton({ children, text, type, width, height }) {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
@@ -17,7 +17,7 @@ function ModalButton({ children, text, type, height, width }) {
       <button
         onClick={toggleModal}
         className={`modalButton modalButton_${type}`}
-        style={{ height: `${height}px`, width: width }}
+        style={{ height: height, width: width }}
       >
         {text}
       </button>

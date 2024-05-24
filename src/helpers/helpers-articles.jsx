@@ -80,16 +80,25 @@ export function src(url, size) {
 
 export const validUrl = (target) => {
   if (target === "") return true;
-  if (target.lenght < 8) return false;
 
-  const string = "https://";
-  for (let i = 0; i < 8; i++) {
-    if (target[i] !== string[i]) return false;
+  try {
+    new URL(target);
+    return (
+      target.includes("https://drive.google.com/file/d/") ||
+      target.includes("https://lh3.google.com/u/5/d/") ||
+      target.includes("https://drive.google.com/thumbnail?id=")
+    );
+  } catch (err) {
+    return false;
   }
+};
 
-  return (
-    target.includes("https://drive.google.com/file/d/") ||
-    target.includes("https://lh3.google.com/u/5/d/") ||
-    target.includes("https://drive.google.com/thumbnail?id=")
-  );
+export const tryUrl = (url) => {
+  if (url === "") return false;
+  try {
+    new URL(url);
+    return false;
+  } catch (err) {
+    return true;
+  }
 };

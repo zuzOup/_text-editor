@@ -16,11 +16,11 @@ function Input_preview_url({ url, path, modifyPreview }) {
   return (
     <>
       <span>
-        <label htmlFor="url_input">URL: </label>
+        <label htmlFor="url_input_prew">URL: </label>
         <input
           type="text"
-          id="url_input"
-          name="url_input"
+          id="url_input_prew"
+          name="url_input_prew"
           placeholder="..."
           value={url}
           onChange={onChangeHandle}

@@ -25,8 +25,8 @@ function Article_img({ id, modifyArticle, articleData, path }) {
       <ModalButton
         text={text.img(articleData(id).img)}
         type={articleData(id).article_type}
-        height={height}
         width={"1000px"}
+        height={"100%"}
       >
         <Modal_img
           modifyArticle={modifyArticle}

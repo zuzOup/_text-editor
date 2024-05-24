@@ -159,22 +159,13 @@ export const firebase_modify = {
       alt: value,
     });
   },
+  link_url: function (path, id, value) {
+    update(child(dbRef, `unfinished${path}/articles/${id}/link`), { url: value });
+  },
+  link_text: function (path, id, value) {
+    update(child(dbRef, `unfinished${path}/articles/${id}/link`), { text: value });
+  },
 };
-
-// export function firebase_modify_text(path, id, value) {
-//   update(child(dbRef, `unfinished${path}/articles/${id}`), { text: value });
-// }
-
-// export function firebase_modify_img_url(path, id, value) {
-//   update(child(dbRef, `unfinished${path}/articles/${id}/img`), { url: value });
-// }
-// export function firebase_modify_img_alt(path, id, value) {
-//   update(child(dbRef, `unfinished${path}/articles/${id}/img`), { alt: value });
-// }
-
-// export function firebase_modify_txtImg_float(path, id, value) {
-//   update(child(dbRef, `unfinished${path}/articles/${id}/img`), { float: value });
-// }
 
 export const firebase_clear = {
   txtImg: function (path, id) {
@@ -190,6 +181,11 @@ export const firebase_clear = {
   preview: function (path) {
     update(child(dbRef, `unfinished${path}`), {
       preview: { alt: "", url: "" },
+    });
+  },
+  link: function (path, id) {
+    update(child(dbRef, `unfinished${path}/articles/${id}`), {
+      link: { text: "", url: "" },
     });
   },
 };
