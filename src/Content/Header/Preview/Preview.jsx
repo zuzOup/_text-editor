@@ -1,28 +1,35 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+
+import ModalButton from "../../Editor/Modal/ModalButton";
+import Modal_preview from "../../Editor/Modal/Modal_preview";
+
+import { src } from "../../../helpers/helpers-articles";
+import { text } from "../../../helpers/helpers-modifiers";
 
 import "./Preview.css";
 
-function Preview({ preview, articleID }) {
-  const [hovered, setHovered] = useState(false);
-
-  const onClickHandle = () => {
-    console.log(preview);
-    console.log(articleID);
+function Preview({ previewData, modifyPreview, path }) {
+  const style = {
+    backgroundImage: `url('${src(previewData.url, 70)}')`,
   };
 
   return (
-    <div
-      id="preview"
-      onMouseEnter={() => {
-        setHovered(true);
-      }}
-      onMouseLeave={() => {
-        setHovered(false);
-      }}
-      onClick={onClickHandle}
-    >
-      <div className={hovered ? "hovered" : undefined}></div>
+    <div id="preview">
+      <div style={style}>
+        <ModalButton
+          text={text.img(previewData)}
+          type={"preview"}
+          height={52.5}
+          width={"70px"}
+        >
+          <Modal_preview
+            modifyPreview={modifyPreview}
+            url={previewData.url}
+            alt={previewData.alt}
+            path={path}
+          />
+        </ModalButton>
+      </div>
     </div>
   );
 }
@@ -30,6 +37,7 @@ function Preview({ preview, articleID }) {
 export default Preview;
 
 Preview.propTypes = {
-  preview: PropTypes.shape({ alt: PropTypes.string, url: PropTypes.string }),
-  articleID: PropTypes.string,
+  previewData: PropTypes.shape({ alt: PropTypes.string, url: PropTypes.string }),
+  modifyPreview: PropTypes.func,
+  path: PropTypes.string,
 };

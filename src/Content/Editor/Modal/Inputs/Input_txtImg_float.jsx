@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 
 import { modifier_float } from "../../../../helpers/helpers-modifiers";
-import { firebase_modify_txtImg_float } from "../../../../firebase/firebaseHelpers";
+import { firebase_modify } from "../../../../firebase/firebaseHelpers";
 import { useEffect } from "react";
 
 function Input_txtImg_float({ float, modifyArticle, id, path }) {
   const switchFloat = (value) => {
     modifyArticle(id, modifier_float, value);
-    firebase_modify_txtImg_float(path, id, value);
+    firebase_modify.float(path, id, value);
 
     if (value === "left") {
       document.getElementById("checkbox_txtImg").checked = true;
@@ -18,15 +18,15 @@ function Input_txtImg_float({ float, modifyArticle, id, path }) {
 
   useEffect(() => {
     if (float === "left") document.getElementById("checkbox_txtImg").checked = true;
-  }, []);
+  }, []); // eslint-disable-line
 
   const checkBoxFloat = (e) => {
     if (e.target.checked === true) {
       modifyArticle(id, modifier_float, "left");
-      firebase_modify_txtImg_float(path, id, "left");
+      firebase_modify.float(path, id, "left");
     } else {
       modifyArticle(id, modifier_float, "right");
-      firebase_modify_txtImg_float(path, id, "right");
+      firebase_modify.float(path, id, "right");
     }
   };
 

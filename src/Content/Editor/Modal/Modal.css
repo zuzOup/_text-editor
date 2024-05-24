@@ -9,12 +9,6 @@
   display: flex;
 }
 
-.modal-cancel-btn {
-  position: fixed;
-  top: 0;
-  right: 0;
-}
-
 .modal_inner {
   background-color: var(--input);
   margin: auto;
@@ -59,6 +53,52 @@
   }
 }
 
+/*------------------------   modal_type    --------------------------------------*/
+
+.modal_txtImg,
+.modal_img {
+  width: 500px;
+
+  .switchSpan {
+    & > p {
+      font-size: 14px;
+    }
+
+    & > button {
+      all: unset;
+      cursor: pointer;
+      width: 70px;
+      &:hover {
+        color: var(--darkRed);
+      }
+    }
+
+    & > div {
+      width: 150px;
+      margin: 0 25px;
+      background-color: var(--input);
+      border: 1px solid #c04b4030;
+      border-radius: 2px;
+
+      & > input {
+        all: unset;
+        margin: 3px;
+        width: 30px;
+        height: 15px;
+        background-color: #c04b40e1;
+        transition: all 0.4s;
+        border-radius: 2px;
+      }
+
+      & > input.right {
+        transform: translateX(114px);
+      }
+    }
+  }
+}
+
+/*------------------------   done    --------------------------------------*/
+
 .done {
   font-size: 12px;
 
@@ -98,6 +138,8 @@
   }
 }
 
+/*------------------------   clear    --------------------------------------*/
+
 .clear {
   all: unset;
   height: 15px;
@@ -121,6 +163,19 @@
     transform: rotate(-45deg);
   }
 }
+
+.clear_txtImg {
+  left: calc(50% + 232px);
+  top: calc(50% - 140px);
+}
+
+.clear_img,
+.clear_link {
+  left: calc(50% + 232px);
+  top: calc(50% - 111px);
+}
+
+/*------------------------   alert    --------------------------------------*/
 
 .alert {
   width: 0;

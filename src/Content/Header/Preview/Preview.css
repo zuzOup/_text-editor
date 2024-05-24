@@ -21,13 +21,13 @@
     text-align: center;
     background-color: var(--input);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-position: center;
+    background-size: cover;
+
     margin: 3px auto;
 
-    &.hovered {
-      background-color: var(--inputActive);
+    button {
+      font-size: 11px;
     }
   }
 }

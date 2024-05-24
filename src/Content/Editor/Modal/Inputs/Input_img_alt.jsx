@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 
 import { modifier_alt } from "../../../../helpers/helpers-modifiers";
-import { firebase_modify_img_alt } from "../../../../firebase/firebaseHelpers";
+import { firebase_modify } from "../../../../firebase/firebaseHelpers";
 
 function Input_img_alt({ alt, modifyArticle, id, path }) {
   const onChangeHandle = (e) => {
     modifyArticle(id, modifier_alt, e.target.value);
-    firebase_modify_img_alt(path, id, e.target.value);
+    firebase_modify.img_alt(path, id, e.target.value);
   };
 
   return (

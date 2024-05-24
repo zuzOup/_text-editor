@@ -1,14 +1,12 @@
 import PropTypes from "prop-types";
 
-import Input_img_url from "../Inputs/Input_img_url";
-import Input_img_alt from "../Inputs/Input_img_alt";
-import Input_txtImg_float from "../Inputs/Input_txtImg_float";
-import Input_hotovo from "../Inputs/Input_hotovo";
+import Input_img_url from "./Inputs/Input_img_url";
+import Input_img_alt from "./Inputs/Input_img_alt";
+import Input_txtImg_float from "./Inputs/Input_txtImg_float";
+import Input_hotovo from "./Inputs/Input_hotovo";
 
-import { clear } from "../../../../helpers/helpers-modifiers";
-import { firebase_clear } from "../../../../firebase/firebaseHelpers";
-
-import "./Modal_txtImg.css";
+import { clear } from "../../../helpers/helpers-modifiers";
+import { firebase_clear } from "../../../firebase/firebaseHelpers";
 
 function Modal_textImg({
   setHeight,
@@ -23,6 +21,7 @@ function Modal_textImg({
   const clearHandle = () => {
     modifyArticle(id, clear.txtImg, "");
     firebase_clear.txtImg(path, id);
+    setHeight(30);
   };
 
   return (

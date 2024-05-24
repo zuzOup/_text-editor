@@ -1,18 +1,15 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-import { validUrl, setInitialHeight } from "../../../../helpers/helpers-articles";
-import { modifier_url } from "../../../../helpers/helpers-modifiers";
-import { firebase_modify } from "../../../../firebase/firebaseHelpers";
+import { validUrl } from "../../../../../helpers/helpers-articles";
+import { firebase_modify } from "../../../../../firebase/firebaseHelpers";
 
-function Input_img_url({ url, setHeight, modifyArticle, id, path, width }) {
+function Input_preview_url({ url, path, modifyPreview }) {
   const [alert, showAlert] = useState(url !== "" && !validUrl(url));
 
   const onChangeHandle = (e) => {
-    modifyArticle(id, modifier_url, e.target.value);
-    firebase_modify.img_url(path, id, e.target.value);
-    setInitialHeight(e.target.value, setHeight, width);
-
+    modifyPreview.url(e.target.value);
+    firebase_modify.preview_url(path, e.target.value);
     validUrl(e.target.value) ? showAlert(false) : showAlert(true);
   };
 
@@ -36,13 +33,10 @@ function Input_img_url({ url, setHeight, modifyArticle, id, path, width }) {
   );
 }
 
-export default Input_img_url;
+export default Input_preview_url;
 
-Input_img_url.propTypes = {
+Input_preview_url.propTypes = {
   url: PropTypes.string,
-  setHeight: PropTypes.func,
-  id: PropTypes.number,
-  modifyArticle: PropTypes.func,
+  modifyPreview: PropTypes.func,
   path: PropTypes.string,
-  width: PropTypes.number,
 };

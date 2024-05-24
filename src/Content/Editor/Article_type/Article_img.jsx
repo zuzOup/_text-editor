@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
 import ModalButton from "../Modal/ModalButton";
-import Modal_img from "../Modal/Modal_img/Modal_img";
+import Modal_img from "../Modal/Modal_img";
 
 import { src, setInitialHeight } from "../../../helpers/helpers-articles";
 import { text } from "../../../helpers/helpers-modifiers";

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import TextEditor from "./TextEditor/TextEditor";
 import ModalButton from "../Modal/ModalButton";
-import Modal_textImg from "../Modal/Modal_txtImg/Modal_textImg";
+import Modal_textImg from "../Modal/Modal_textImg";
 
 import { src, setInitialHeight } from "../../../helpers/helpers-articles";
 import { text } from "../../../helpers/helpers-modifiers";

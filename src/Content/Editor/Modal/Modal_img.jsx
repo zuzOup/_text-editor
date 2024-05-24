@@ -1,18 +1,17 @@
 import PropTypes from "prop-types";
 
-import Input_img_url from "../Inputs/Input_img_url";
-import Input_img_alt from "../Inputs/Input_img_alt";
-import Input_hotovo from "../Inputs/Input_hotovo";
+import Input_img_url from "./Inputs/Input_img_url";
+import Input_img_alt from "./Inputs/Input_img_alt";
+import Input_hotovo from "./Inputs/Input_hotovo";
 
-import { clear } from "../../../../helpers/helpers-modifiers";
-import { firebase_clear } from "../../../../firebase/firebaseHelpers";
-
-import "./Modal_img.css";
+import { clear } from "../../../helpers/helpers-modifiers";
+import { firebase_clear } from "../../../firebase/firebaseHelpers";
 
 function Modal_img({ setHeight, url, alt, modifyArticle, id, path, toggleModal }) {
   const clearHandle = () => {
     modifyArticle(id, clear.img, "");
     firebase_clear.img(path, id);
+    setHeight(30);
   };
 
   return (

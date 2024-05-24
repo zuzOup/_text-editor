@@ -25,7 +25,36 @@ function Content() {
   return (
     <>
       {/*-------------------------------------------  Header  ------------------------------------------- */}
-      <Preview preview={articleData.header.preview} articleID={articleID.current} />
+      <Preview
+        previewData={articleData.header.preview}
+        modifyPreview={{
+          url: function (value) {
+            setArticleData((prevData) => {
+              const obj = {
+                ...prevData,
+              };
+              const header = { ...obj.header };
+              const preview = { ...header.preview, url: value };
+              header.preview = preview;
+              obj.header = header;
+              return obj;
+            });
+          },
+          alt: function (value) {
+            setArticleData((prevData) => {
+              const obj = {
+                ...prevData,
+              };
+              const header = { ...obj.header };
+              const preview = { ...header.preview, alt: value };
+              header.preview = preview;
+              obj.header = header;
+              return obj;
+            });
+          },
+        }}
+        path={`/${articleID.current}/header`}
+      />
       <Day date={articleData.header.date} />
       <Weather
         weather={articleData.header.place}
