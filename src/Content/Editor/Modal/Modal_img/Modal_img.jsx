@@ -2,32 +2,22 @@ import PropTypes from "prop-types";
 
 import Input_img_url from "../Inputs/Input_img_url";
 import Input_img_alt from "../Inputs/Input_img_alt";
-import Input_txtImg_float from "../Inputs/Input_txtImg_float";
 import Input_hotovo from "../Inputs/Input_hotovo";
 
 import { clear } from "../../../../helpers/helpers-modifiers";
 import { firebase_clear } from "../../../../firebase/firebaseHelpers";
 
-import "./Modal_txtImg.css";
+import "./Modal_img.css";
 
-function Modal_textImg({
-  setHeight,
-  url,
-  alt,
-  float,
-  modifyArticle,
-  id,
-  path,
-  toggleModal,
-}) {
+function Modal_img({ setHeight, url, alt, modifyArticle, id, path, toggleModal }) {
   const clearHandle = () => {
-    modifyArticle(id, clear.txtImg, "");
-    firebase_clear.txtImg(path, id);
+    modifyArticle(id, clear.img, "");
+    firebase_clear.img(path, id);
   };
 
   return (
     <>
-      <div className="modal_txtImg modal_inner">
+      <div className="modal_img modal_inner">
         <div>
           <Input_img_url
             setHeight={setHeight}
@@ -35,31 +25,24 @@ function Modal_textImg({
             modifyArticle={modifyArticle}
             id={id}
             path={path}
-            width={150}
+            width={1000}
           />
           <Input_img_alt modifyArticle={modifyArticle} id={id} path={path} alt={alt} />
-          <Input_txtImg_float
-            modifyArticle={modifyArticle}
-            id={id}
-            path={path}
-            float={float}
-          />
           <Input_hotovo toggleModal={toggleModal} />
         </div>
       </div>
-      <button className="clear clear_txtImg" onClick={clearHandle}>
+      <button className="clear clear_img" onClick={clearHandle}>
         <div></div>
       </button>
     </>
   );
 }
 
-export default Modal_textImg;
+export default Modal_img;
 
-Modal_textImg.propTypes = {
+Modal_img.propTypes = {
   url: PropTypes.string,
   alt: PropTypes.string,
-  float: PropTypes.string,
   setHeight: PropTypes.func,
   id: PropTypes.number,
   modifyArticle: PropTypes.func,

@@ -157,4 +157,9 @@ export const firebase_clear = {
       img: { alt: "", url: "", float: "right" },
     });
   },
+  img: function (path, id) {
+    update(child(dbRef, `unfinished${path}/articles/${id}`), {
+      img: { alt: "", url: "" },
+    });
+  },
 };

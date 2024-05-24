@@ -28,7 +28,14 @@ function Article_switch({ id, articleType, modifyArticle, articleData, path }) {
         />
       );
     case "img":
-      return <Article_img modifyArticle={modifyArticle} />;
+      return (
+        <Article_img
+          modifyArticle={modifyArticle}
+          id={id}
+          articleData={articleData}
+          path={path}
+        />
+      );
     case "grid":
       return <Article_grid modifyArticle={modifyArticle} />;
     case "yt":

@@ -34,6 +34,11 @@ export const clear = {
     obj.img = { alt: value, url: value, float: "right" };
     return obj;
   },
+  img: function (data, value) {
+    const obj = { ...data };
+    obj.img = { alt: value, url: value };
+    return obj;
+  },
 };
 
 export const text = {

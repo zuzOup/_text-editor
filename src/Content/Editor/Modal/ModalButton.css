@@ -12,3 +12,8 @@
     color: white;
   }
 }
+
+.modalButton_img {
+  display: block;
+  width: 1000px;
+}

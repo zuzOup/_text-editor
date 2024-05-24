@@ -5,13 +5,13 @@ import { validUrl, setInitialHeight } from "../../../../helpers/helpers-articles
 import { modifier_url } from "../../../../helpers/helpers-modifiers";
 import { firebase_modify_img_url } from "../../../../firebase/firebaseHelpers";
 
-function Input_img_url({ url, setHeight, modifyArticle, id, path }) {
+function Input_img_url({ url, setHeight, modifyArticle, id, path, width }) {
   const [alert, showAlert] = useState(url !== "" && !validUrl(url));
 
   const onChangeHandle = (e) => {
     modifyArticle(id, modifier_url, e.target.value);
     firebase_modify_img_url(path, id, e.target.value);
-    setInitialHeight(e.target.value, setHeight, 150);
+    setInitialHeight(e.target.value, setHeight, width);
 
     validUrl(e.target.value) ? showAlert(false) : showAlert(true);
   };
@@ -44,4 +44,5 @@ Input_img_url.propTypes = {
   id: PropTypes.number,
   modifyArticle: PropTypes.func,
   path: PropTypes.string,
+  width: PropTypes.number,
 };
