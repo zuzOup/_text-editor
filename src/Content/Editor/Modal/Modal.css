@@ -54,9 +54,10 @@
 }
 
 /*------------------------   modal_type    --------------------------------------*/
-
 .modal_txtImg,
-.modal_img {
+.modal_img,
+.modal_link,
+.modal_yt {
   width: 500px;
 
   .switchSpan {
@@ -64,6 +65,15 @@
       font-size: 14px;
     }
 
+    & > div {
+      width: 150px;
+    }
+  }
+}
+
+.modal_txtImg,
+.modal_img {
+  .switchSpan {
     & > button {
       all: unset;
       cursor: pointer;
@@ -74,7 +84,6 @@
     }
 
     & > div {
-      width: 150px;
       margin: 0 25px;
       background-color: var(--input);
       border: 1px solid #c04b4030;
@@ -97,6 +106,12 @@
   }
 }
 
+#input_url_ID {
+  position: absolute;
+  margin: 0;
+  transform: translateX(450px);
+  transform: translateY(-34px);
+}
 /*------------------------   done    --------------------------------------*/
 
 .done {

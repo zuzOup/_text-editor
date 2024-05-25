@@ -8,7 +8,7 @@ import { firebase_clear } from "../../../firebase/firebaseHelpers";
 
 function Modal_link({ url, text, modifyArticle, id, path, toggleModal }) {
   const clearHandle = () => {
-    modifyArticle(id, clear.link, "");
+    modifyArticle(id, clear.link);
     firebase_clear.link(path, id);
   };
   return (

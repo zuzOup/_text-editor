@@ -102,23 +102,3 @@ export const tryUrl = (url) => {
     return true;
   }
 };
-
-export const isStyle = (value) => {
-  if (value === "")
-    return {
-      height: "30px",
-      backgroundImage: "none",
-    };
-  try {
-    new URL(`https://img.youtube.com/vi/${value}/maxresdefault.jpg`);
-    return {
-      height: "450px",
-      backgroundImage: `url("https://img.youtube.com/vi/${value}/maxresdefault.jpg")`,
-    };
-  } catch (err) {
-    return {
-      height: "30px",
-      backgroundImage: "none",
-    };
-  }
-};

@@ -44,20 +44,41 @@ export function modifier_link_text(data, value) {
   return obj;
 }
 
+export function modifier_yt_start(data, value) {
+  const obj = { ...data };
+  const yt = { ...data.yt };
+  yt.start = value;
+  obj.yt = { ...yt };
+  return obj;
+}
+
+export function modifier_yt_urlID(data, value) {
+  const obj = { ...data };
+  const yt = { ...data.yt };
+  yt.urlID = value;
+  obj.yt = { ...yt };
+  return obj;
+}
+
 export const clear = {
-  txtImg: function (data, value) {
+  txtImg: function (data) {
     const obj = { ...data };
-    obj.img = { alt: value, url: value, float: "right" };
+    obj.img = { alt: "", url: "", float: "right" };
     return obj;
   },
-  img: function (data, value) {
+  img: function (data) {
     const obj = { ...data };
-    obj.img = { alt: value, url: value };
+    obj.img = { alt: "", url: "" };
     return obj;
   },
-  link: function (data, value) {
+  link: function (data) {
     const obj = { ...data };
-    obj.link = { text: value, url: value };
+    obj.link = { text: "", url: "" };
+    return obj;
+  },
+  yt: function (data) {
+    const obj = { ...data };
+    obj.yt = { start: 0, urlID: "" };
     return obj;
   },
 };
@@ -70,6 +91,6 @@ export const text = {
     return data.text === "" ? "Přidat link ↗" : `<em>${data.text}</em> ↗`;
   },
   yt: function (data) {
-    return data.yt === "" ? "Přidat YT ↗" : "Upravit ↗";
+    return data.urlID === "" ? "Přidat YT ↗" : "Upravit ↗";
   },
 };

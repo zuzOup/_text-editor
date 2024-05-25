@@ -2,6 +2,9 @@ import PropTypes from "prop-types";
 
 import { useState } from "react";
 
+import { modifier_yt_urlID } from "../../../../helpers/helpers-modifiers";
+import { firebase_modify } from "../../../../firebase/firebaseHelpers";
+
 const videoValue = [
   "https://www.youtube.com/watch?v=",
   "https://studio.youtube.com/video/",
@@ -17,25 +20,25 @@ function Input_yt_url({ urlID, modifyArticle, id, path }) {
   const [url, setUrl] = useState(isYT(urlID));
   const [showUrlID, setShowURL] = useState(false);
   const [alert, showAlert] = useState(false);
-  /*
+
   const onChangeHandle = (e) => {
-    try{}
+    const value = e.target.value;
+    setUrl(value);
 
+    if (videoValue.some((x) => value.includes(x) && value.split(x)[0] === "")) {
+      const urlID = videoValue.reduce((acc, cur) => {
+        if (value.includes(cur) && value.split(cur)[0] === "") {
+          const id = acc.split(cur)[1].split("&")[0];
+          return id;
+        } else return acc;
+      }, value);
 
-    // const value = e.target.value;
-    // inputHandle(value, "url");
-
-    // try {
-    //   videoValue.some((x) => value.includes(x) && value.split(x)[0] === "");
-
-    //   const id = value.split("https://www.youtube.com/watch?v=")[1].split("&")[0];
-    //   inputHandle(id, "urlID");
-    //   showAlert(false);
-    // } catch (error) {
-    //   showAlert(true);
-    //   if (value === "") inputHandle("", "urlID");
+      modifyArticle(id, modifier_yt_urlID, urlID);
+      firebase_modify.yt_url(path, id, urlID);
+    } else {
+      showAlert(true);
     }
-  };*/
+  };
 
   const onFocus = () => {
     setShowURL(true);
@@ -48,14 +51,14 @@ function Input_yt_url({ urlID, modifyArticle, id, path }) {
   return (
     <>
       <span>
-        <label htmlFor="url_input">URL: </label>
+        <label htmlFor="url_input_yt">URL: </label>
         <input
           type="text"
-          id="url_input"
-          name="url_input"
+          id="url_input_yt"
+          name="url_input_yt"
           placeholder="..."
           value={url}
-          // onChange={onChangeHandle}
+          onChange={onChangeHandle}
           onFocus={onFocus}
           onBlur={onBlur}
         ></input>
@@ -70,4 +73,9 @@ function Input_yt_url({ urlID, modifyArticle, id, path }) {
 
 export default Input_yt_url;
 
-Input_yt_url.propTypes = { prop: PropTypes.any };
+Input_yt_url.propTypes = {
+  urlID: PropTypes.string,
+  id: PropTypes.number,
+  modifyArticle: PropTypes.func,
+  path: PropTypes.string,
+};

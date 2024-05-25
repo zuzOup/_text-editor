@@ -30,4 +30,7 @@
     font-style: normal;
     text-decoration: underline;
   }
+  &:hover {
+    box-shadow: 1px 1px 5px #bfbfbfbf;
+  }
 }

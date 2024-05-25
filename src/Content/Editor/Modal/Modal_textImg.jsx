@@ -19,7 +19,7 @@ function Modal_textImg({
   toggleModal,
 }) {
   const clearHandle = () => {
-    modifyArticle(id, clear.txtImg, "");
+    modifyArticle(id, clear.txtImg);
     firebase_clear.txtImg(path, id);
     setHeight(30);
   };

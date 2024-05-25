@@ -1,4 +1,5 @@
 .article {
+  min-height: 30px;
   width: 1000px;
   height: fit-content;
 }
@@ -41,5 +42,20 @@
 }
 
 .article_img {
-  width: 1000px;
+  border-radius: 2px;
+  box-shadow: 1px 1px 5px #bfbfbfbf;
+}
+.article_img30 {
+  box-shadow: none;
+  &:hover {
+    box-shadow: 1px 1px 5px #bfbfbfbf;
+  }
+}
+
+.article_yt {
+  background-size: cover;
+}
+
+.article_yt:hover {
+  box-shadow: 1px 1px 5px #bfbfbfbf;
 }

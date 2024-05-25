@@ -9,7 +9,7 @@ import { firebase_clear } from "../../../firebase/firebaseHelpers";
 
 function Modal_img({ setHeight, url, alt, modifyArticle, id, path, toggleModal }) {
   const clearHandle = () => {
-    modifyArticle(id, clear.img, "");
+    modifyArticle(id, clear.img);
     firebase_clear.img(path, id);
     setHeight(30);
   };

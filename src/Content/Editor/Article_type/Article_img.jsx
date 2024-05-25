@@ -15,13 +15,12 @@ function Article_img({ id, modifyArticle, articleData, path }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const style = {
-    minHeight: `30px`,
     height: `${height}px`,
     backgroundImage: `url('${src(articleData(id).img.url, 1000)}')`,
   };
 
   return (
-    <div className="article article_img" style={style}>
+    <div className={`article article_img article_img${height}`} style={style}>
       <ModalButton
         text={text.img(articleData(id).img)}
         type={articleData(id).article_type}

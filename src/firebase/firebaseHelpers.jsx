@@ -82,6 +82,7 @@ export function firebase_addArticle(path, newArticleID, data) {
       const articles = snapshot.val().articles;
       const article_order = snapshot.val().article_order;
 
+      console.log(snapshot.val().article_order);
       if (article_order.length === 1 && article_order[0] === 0) {
         set(ref(database, `unfinished${path}/articles`), {
           [newArticleID]: data,
@@ -165,6 +166,12 @@ export const firebase_modify = {
   link_text: function (path, id, value) {
     update(child(dbRef, `unfinished${path}/articles/${id}/link`), { text: value });
   },
+  yt_start: function (path, id, value) {
+    update(child(dbRef, `unfinished${path}/articles/${id}/yt`), { start: value });
+  },
+  yt_url: function (path, id, value) {
+    update(child(dbRef, `unfinished${path}/articles/${id}/yt`), { urlID: value });
+  },
 };
 
 export const firebase_clear = {
@@ -186,6 +193,11 @@ export const firebase_clear = {
   link: function (path, id) {
     update(child(dbRef, `unfinished${path}/articles/${id}`), {
       link: { text: "", url: "" },
+    });
+  },
+  yt: function (path, id) {
+    update(child(dbRef, `unfinished${path}/articles/${id}`), {
+      yt: { urlID: "", start: 0 },
     });
   },
 };
