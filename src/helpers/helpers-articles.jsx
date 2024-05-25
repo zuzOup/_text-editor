@@ -102,3 +102,8 @@ export const tryUrl = (url) => {
     return true;
   }
 };
+
+export function fmtMSS(s) {
+  if (isNaN(s)) return "0:00";
+  return (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + s;
+}

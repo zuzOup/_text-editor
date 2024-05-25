@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { modifier_yt_start } from "../../../../helpers/helpers-modifiers";
 import { firebase_modify } from "../../../../firebase/firebaseHelpers";
 
+import { fmtMSS } from "../../../../helpers/helpers-articles";
+
 function Input_yt_start({ start, modifyArticle, id, path }) {
   const onChangeHandle = (e) => {
     modifyArticle(id, modifier_yt_start, parseInt(e.target.value));
@@ -21,6 +23,9 @@ function Input_yt_start({ start, modifyArticle, id, path }) {
         value={start}
         onChange={onChangeHandle}
       ></input>
+      <div id="input_timer">
+        <p>{fmtMSS(start)}</p>
+      </div>
     </span>
   );
 }
