@@ -165,6 +165,10 @@ function Content() {
             const obj = {
               ...prevData,
             };
+            if (obj.article_order[0] === 0) obj.article_order.pop();
+
+            if (obj.article_order.includes(id)) return obj;
+
             obj.article_order.push(id);
             obj.articles[id] = button;
             return obj;

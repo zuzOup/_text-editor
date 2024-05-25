@@ -17,6 +17,7 @@ function Preview({ previewData, modifyPreview, path }) {
     <div id="preview">
       <div style={style}>
         <ModalButton
+          Button
           text={text.img(previewData)}
           type={"preview"}
           width={"70px"}

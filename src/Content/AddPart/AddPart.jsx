@@ -10,6 +10,7 @@ function AddPart({ addArticle, path }) {
   const [showButtons, setShowButtons] = useState(false);
 
   const buttonHandle = (button) => {
+    
     const id = idStamp();
     addArticle(id, button);
     firebase_addArticle(path, id, button);

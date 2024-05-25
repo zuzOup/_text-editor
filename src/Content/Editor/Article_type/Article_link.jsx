@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import parse from "html-react-parser";
+
 
 import ModalButton from "../Modal/ModalButton";
 import Modal_link from "../Modal/Modal_link";
@@ -15,7 +15,7 @@ function Article_link({ id, modifyArticle, articleData, path }) {
   return (
     <div className="article article_link" style={style}>
       <ModalButton
-        text={parse(text.link(articleData(id).link))}
+        text={text.link(articleData(id).link)}
         type={articleData(id).article_type}
         height={`100%`}
         width={"1000px"}

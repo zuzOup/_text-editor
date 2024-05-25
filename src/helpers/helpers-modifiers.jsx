@@ -69,4 +69,7 @@ export const text = {
   link: function (data) {
     return data.text === "" ? "Přidat link ↗" : `<em>${data.text}</em> ↗`;
   },
+  yt: function (data) {
+    return data.yt === "" ? "Přidat YT ↗" : "Upravit ↗";
+  },
 };

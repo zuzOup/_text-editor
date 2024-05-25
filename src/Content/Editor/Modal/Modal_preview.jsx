@@ -34,7 +34,7 @@ export default Modal_preview;
 Modal_preview.propTypes = {
   url: PropTypes.string,
   alt: PropTypes.string,
-  modifyPreview: PropTypes.obj,
+  modifyPreview: PropTypes.shape({ alt: PropTypes.func, url: PropTypes.func }),
   path: PropTypes.string,
   toggleModal: PropTypes.func,
 };

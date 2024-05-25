@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { createPortal } from "react-dom";
 import { useState, cloneElement } from "react";
+import parse from "html-react-parser";
 
 import "./ModalButton.css";
 import "./Modal.css";
@@ -19,7 +20,7 @@ function ModalButton({ children, text, type, width, height }) {
         className={`modalButton modalButton_${type}`}
         style={{ height: height, width: width }}
       >
-        {text}
+        {parse(text)}
       </button>
       {isModalVisible &&
         createPortal(
@@ -38,6 +39,6 @@ ModalButton.propTypes = {
   children: PropTypes.object,
   text: PropTypes.string,
   type: PropTypes.string,
-  height: PropTypes.number,
+  height: PropTypes.string,
   width: PropTypes.string,
 };

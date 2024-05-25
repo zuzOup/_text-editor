@@ -17,7 +17,7 @@ export const buttons = [
   },
   {
     name: "YT",
-    obj: { article_type: "yt", yt: { urlID: "" } },
+    obj: { article_type: "yt", yt: { urlID: "", url: "" } },
   },
   {
     name: "link",
