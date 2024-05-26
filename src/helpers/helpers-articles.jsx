@@ -107,3 +107,80 @@ export function fmtMSS(s) {
   if (isNaN(s)) return "0:00";
   return (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + s;
 }
+
+export function colors(key) {
+  const color = [
+    "#E4BDB5",
+    "#C5766E",
+    "#B72D21",
+    "#E75630",
+    "#AD5430",
+    "#785436",
+    "#A97B44",
+    "#DBA357",
+    "#F4B620",
+    "#ABA247",
+    "#7C9A82",
+    "#5E6F6C",
+    "#3E516B",
+    "#6391DD",
+    "#98C7FD",
+    "#B1BCC0",
+    "#CCCFCF",
+    "#E4E2DE",
+  ];
+
+  return color[(key - 1) % 18];
+}
+
+export const state = (divs) => {
+  if (divs === 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+
+export const gridValues = (value) => {
+  const obj = { ...value };
+  const flipped = Object.keys(obj).reduce((acc, cur) => {
+    acc[obj[cur]]
+      ? (acc[obj[cur]] = [...acc[obj[cur]], parseInt(cur)])
+      : (acc[obj[cur]] = [parseInt(cur)]);
+    return acc;
+  }, {});
+
+  const rowValue = (value) => {
+    return (value - ((value - 1) % 6) - 1) / 6 + 1;
+  };
+  const sorted = (x, y) => {
+    return [x, y].sort((a, b) => a - b);
+  };
+
+  const new_arr = Object.values(flipped).map((arr) => {
+    const first = arr[0];
+    const last = [...arr].pop();
+
+    return {
+      rowStart: rowValue(first),
+      rowEnd: rowValue(last) + 1,
+      columnStart: sorted(
+        first - (rowValue(first) - 1) * 6,
+        last - (rowValue(last) - 1) * 6
+      )[0],
+      columnEnd:
+        sorted(first - (rowValue(first) - 1) * 6, last - (rowValue(last) - 1) * 6)[1] + 1,
+    };
+  });
+
+  return new_arr;
+
+  // let new_obj = {};
+
+  // for (let i = 1; i <= new_arr.length; i++) {
+  //   new_obj[`${i}`] = new_arr[i - 1];
+  // }
+
+  // return new_obj;
+};

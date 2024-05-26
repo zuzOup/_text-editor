@@ -82,7 +82,6 @@ export function firebase_addArticle(path, newArticleID, data) {
       const articles = snapshot.val().articles;
       const article_order = snapshot.val().article_order;
 
-      console.log(snapshot.val().article_order);
       if (article_order.length === 1 && article_order[0] === 0) {
         set(ref(database, `unfinished${path}/articles`), {
           [newArticleID]: data,
@@ -172,6 +171,47 @@ export const firebase_modify = {
   yt_url: function (path, id, value) {
     update(child(dbRef, `unfinished${path}/articles/${id}/yt`), { urlID: value });
   },
+  grid_rows: function (path, id, value) {
+    update(child(dbRef, `unfinished${path}/articles/${id}`), { rows: value });
+  },
+  grid_RS: function (path, id, value) {
+    get(child(dbRef, `unfinished${path}/articles/${id}/divs`))
+      .then((data) => {
+        if (data.val() === 0) {
+          const divs = {};
+          value.forEach((value_obj, i) => {
+            const newDivs = { ...value_obj, alt: "", url: "" };
+            divs[i + 1] = newDivs;
+          });
+          set(ref(database, `unfinished${path}/articles/${id}/divs`), divs);
+        } else {
+          const divs = { ...data.val() };
+
+          for (let i = 1; i <= Object.keys(divs).length; i++) {
+            if (!value[i - 1]) {
+              delete divs[i];
+            }
+          }
+
+          value.forEach((value_obj, i) => {
+            const curDiv = { ...divs[i + 1] };
+            curDiv.alt = curDiv.alt || "";
+            curDiv.url = curDiv.url || "";
+            curDiv.rowStart = value_obj.rowStart;
+            curDiv.rowEnd = value_obj.rowEnd;
+            curDiv.columnStart = value_obj.columnStart;
+            curDiv.columnEnd = value_obj.columnEnd;
+
+            divs[i + 1] = curDiv;
+          });
+
+          update(child(dbRef, `unfinished${path}/articles/${id}`), { divs: divs });
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  },
 };
 
 export const firebase_clear = {
@@ -198,6 +238,12 @@ export const firebase_clear = {
   yt: function (path, id) {
     update(child(dbRef, `unfinished${path}/articles/${id}`), {
       yt: { urlID: "", start: 0 },
+    });
+  },
+  grid: function (path, id) {
+    update(child(dbRef, `unfinished${path}/articles/${id}`), {
+      divs: 0,
+      rows: "1",
     });
   },
 };

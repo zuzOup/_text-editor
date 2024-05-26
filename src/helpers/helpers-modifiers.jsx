@@ -60,6 +60,47 @@ export function modifier_yt_urlID(data, value) {
   return obj;
 }
 
+export function modifier_grid_rows(data, value) {
+  const obj = { ...data };
+  obj.rows = value;
+  return obj;
+}
+
+export function modifier_grid_divsRC(data, value) {
+  if (data.divs !== 0) {
+    const obj = { ...data };
+    const divs = { ...obj.divs };
+
+    for (let i = 1; i <= Object.keys(divs).length; i++) {
+      if (!value[i - 1]) {
+        delete divs[i];
+      }
+    }
+
+    value.forEach((value_obj, i) => {
+      const curDiv = { ...divs[i + 1] };
+      curDiv.rowStart = value_obj.rowStart;
+      curDiv.rowEnd = value_obj.rowEnd;
+      curDiv.columnStart = value_obj.columnStart;
+      curDiv.columnEnd = value_obj.columnEnd;
+      curDiv.alt = curDiv.alt || "";
+      curDiv.url = curDiv.url || "";
+      divs[i + 1] = curDiv;
+    });
+    obj.divs = divs;
+    return obj;
+  } else {
+    const obj = { ...data };
+    const divs = {};
+    value.forEach((value_obj, i) => {
+      const newDivs = { ...value_obj, alt: "", url: "" };
+      divs[i + 1] = newDivs;
+    });
+    obj.divs = divs;
+    return obj;
+  }
+}
+
 export const clear = {
   txtImg: function (data) {
     const obj = { ...data };
@@ -81,6 +122,12 @@ export const clear = {
     obj.yt = { start: 0, urlID: "" };
     return obj;
   },
+  grid: function (data) {
+    const obj = { ...data };
+    obj.divs = 0;
+    obj.rows = "1";
+    return obj;
+  },
 };
 
 export const text = {
@@ -92,5 +139,8 @@ export const text = {
   },
   yt: function (data) {
     return data.urlID === "" ? "Přidat YT ↗" : "Upravit ↗";
+  },
+  grid: function () {
+    return "Přidat grid ↗";
   },
 };

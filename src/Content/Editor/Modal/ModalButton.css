@@ -34,3 +34,7 @@
     box-shadow: 1px 1px 5px #bfbfbfbf;
   }
 }
+
+.modalButton_grid:hover {
+  box-shadow: 1px 1px 5px #bfbfbfbf;
+}

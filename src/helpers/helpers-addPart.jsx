@@ -13,7 +13,7 @@ export const buttons = [
   },
   {
     name: "grid",
-    obj: { article_type: "grid", rows: "", divs: {} },
+    obj: { article_type: "grid", rows: "1", divs: 0 },
   },
   {
     name: "YT",
@@ -28,3 +28,13 @@ export const buttons = [
 export function idStamp() {
   return new Date().valueOf();
 }
+
+export const divs = {
+  url: "",
+  alt: "",
+
+  rowStart: 0,
+  rowEnd: 0,
+  columnStart: 0,
+  columnEnd: 0,
+};
