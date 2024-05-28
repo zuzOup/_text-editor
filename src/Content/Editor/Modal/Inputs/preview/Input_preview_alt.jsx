@@ -27,6 +27,6 @@ export default Input_preview_alt;
 
 Input_preview_alt.propTypes = {
   alt: PropTypes.string,
-  modifyPreview: PropTypes.func,
+  modifyPreview: PropTypes.shape({ alt: PropTypes.func, url: PropTypes.func }),
   path: PropTypes.string,
 };

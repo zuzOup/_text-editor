@@ -97,6 +97,7 @@ const toBeDeleted = (arr, obj, condition) => {
 export default function IG_setSquares(squaresBefore_obj, squaresNew, counter, shift) {
   //
   let squaresAfter_obj = { ...squaresBefore_obj };
+  
   const squaresBefore = Object.keys(squaresBefore_obj).map((square) => parseInt(square));
   const intersection = findIntersection(squaresNew, squaresBefore);
 

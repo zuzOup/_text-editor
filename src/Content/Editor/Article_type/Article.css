@@ -59,3 +59,23 @@
 .article_yt:hover {
   box-shadow: 1px 1px 5px #bfbfbfbf;
 }
+
+.article_grid {
+  .grid {
+    display: grid;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    grid-template-columns: repeat(6, 150px);
+
+    & > div {
+      all: unset;
+      box-shadow: 1px 1px 5px #bfbfbfbf;
+      border-radius: 2px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      cursor: pointer;
+      color: var(--darkRed);
+    }
+  }
+}

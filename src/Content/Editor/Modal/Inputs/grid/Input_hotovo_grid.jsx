@@ -22,14 +22,11 @@ function Input_hotovo_grid({
     toggleModal();
     setModalButton(state(articleData(id).divs));
 
-    const data = rowValue(
-      Math.max(...Object.keys({ ...squares }).map((x) => parseInt(x)))
-    );
+    const data =
+      rowValue(Math.max(...Object.keys({ ...squares }).map((x) => parseInt(x)))) || "1";
 
     firebase_modify.grid_rows(path, id, `${data}`);
     modifyArticle(id, modifier_grid_rows, `${data}`);
-
-    console.log(articleData(id).divs);
   };
 
   return (

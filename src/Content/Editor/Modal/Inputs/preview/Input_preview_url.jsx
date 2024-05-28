@@ -37,6 +37,6 @@ export default Input_preview_url;
 
 Input_preview_url.propTypes = {
   url: PropTypes.string,
-  modifyPreview: PropTypes.func,
+  modifyPreview: PropTypes.shape({ alt: PropTypes.func, url: PropTypes.func }),
   path: PropTypes.string,
 };

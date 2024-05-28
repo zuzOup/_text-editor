@@ -71,23 +71,26 @@ export function modifier_grid_divsRC(data, value) {
     const obj = { ...data };
     const divs = { ...obj.divs };
 
-    for (let i = 1; i <= Object.keys(divs).length; i++) {
-      if (!value[i - 1]) {
-        delete divs[i];
+    let newDivs = {};
+
+    for (let i = 0; i < Object.keys(divs).length; i++) {
+      if (value[i] !== undefined) {
+        const key = Object.keys(divs)[i];
+        newDivs[i + 1] = divs[key];
       }
     }
 
     value.forEach((value_obj, i) => {
-      const curDiv = { ...divs[i + 1] };
+      const curDiv = { ...newDivs[i + 1] };
       curDiv.rowStart = value_obj.rowStart;
       curDiv.rowEnd = value_obj.rowEnd;
       curDiv.columnStart = value_obj.columnStart;
       curDiv.columnEnd = value_obj.columnEnd;
       curDiv.alt = curDiv.alt || "";
       curDiv.url = curDiv.url || "";
-      divs[i + 1] = curDiv;
+      newDivs[i + 1] = curDiv;
     });
-    obj.divs = divs;
+    obj.divs = newDivs;
     return obj;
   } else {
     const obj = { ...data };
@@ -99,6 +102,28 @@ export function modifier_grid_divsRC(data, value) {
     obj.divs = divs;
     return obj;
   }
+}
+
+//arr = [value, item]
+export function modifier_grid_url(data, arr) {
+  const obj = { ...data };
+  const divs = { ...data.divs };
+  const item = { ...divs[arr[1]] };
+  item.url = arr[0];
+  divs[arr[1]] = item;
+  obj.divs = { ...divs };
+  return obj;
+}
+
+//arr = [value, item]
+export function modifier_grid_alt(data, arr) {
+  const obj = { ...data };
+  const divs = { ...data.divs };
+  const item = { ...divs[arr[1]] };
+  item.alt = arr[0];
+  divs[arr[1]] = item;
+  obj.divs = { ...divs };
+  return obj;
 }
 
 export const clear = {
@@ -142,5 +167,8 @@ export const text = {
   },
   grid: function () {
     return "Přidat grid ↗";
+  },
+  gridImg: function (data) {
+    return data.url === "" ? "Přidat img ↗" : "Upravit ↗";
   },
 };

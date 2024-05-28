@@ -11,6 +11,7 @@ import { state } from "../../../helpers/helpers-articles";
 
 function Article_grid({ id, modifyArticle, articleData, path }) {
   const [modalButton, setModalButton] = useState(state(articleData(id).divs));
+
   return (
     <div className={`article article_grid `}>
       {modalButton && (
@@ -35,6 +36,7 @@ function Article_grid({ id, modifyArticle, articleData, path }) {
           id={id}
           articleData={articleData}
           path={path}
+          setModalButton={setModalButton}
         />
       )}
     </div>

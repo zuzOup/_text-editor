@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState,useRef } from "react";
+import { useState, useRef } from "react";
 
 import { clear } from "../../../helpers/helpers-modifiers";
 import { firebase_clear } from "../../../firebase/firebaseHelpers";
@@ -8,6 +8,39 @@ import Input_grid_preset from "./Inputs/grid/Input_grid_preset";
 import Input_grid_rowsInput from "./Inputs/grid/Input_grid_rowsInput";
 import Input_hotovo_grid from "./Inputs/grid/Input_hotovo_grid";
 import Input_grid_selection from "./Inputs/grid/Input_grid_selection";
+import Input_grid_inputs from "./Inputs/grid/Input_grid_inputs";
+
+function range(start, end) {
+  return Array.apply(null, Array(end - start + 1)).map(function (_, n) {
+    return n + start;
+  });
+}
+
+const squaresLoad = (value) => {
+  if (value === 0) return {};
+  const value_obj = { ...value };
+  let obj = {};
+  for (let i = 1; i <= Object.keys(value_obj).length; i++) {
+    const row = range(parseInt(value_obj[i].rowStart), parseInt(value_obj[i].rowEnd) - 1);
+    const column = range(
+      parseInt(value_obj[i].columnStart),
+      parseInt(value_obj[i].columnEnd) - 1
+    );
+
+    for (let j = 0; j < row.length; j++) {
+      for (let k = 0; k < column.length; k++) {
+        obj[row[j] * 6 - 6 + column[k]] = i;
+      }
+    }
+  }
+
+  return obj;
+};
+
+const loadCounter = (value) => {
+  if (value === 0) return 0;
+  return Object.keys({ ...value }).length;
+};
 
 function Modal_grid({
   id,
@@ -17,8 +50,8 @@ function Modal_grid({
   toggleModal,
   setModalButton,
 }) {
-  const [squares, setSquares] = useState({});
-  const counter = useRef(0);
+  const [squares, setSquares] = useState(squaresLoad(articleData(id).divs));
+  const counter = useRef(loadCounter(articleData(id).divs));
 
   const clearHandle = () => {
     modifyArticle(id, clear.grid);
@@ -69,7 +102,13 @@ function Modal_grid({
               counter={counter}
             />
           </div>
-          <div> inputs</div>
+          <Input_grid_inputs
+            modifyArticle={modifyArticle}
+            articleData={articleData}
+            id={id}
+            path={path}
+            squares={squares}
+          />
         </div>
         <Input_hotovo_grid
           toggleModal={toggleModal}

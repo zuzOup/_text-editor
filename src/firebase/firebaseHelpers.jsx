@@ -187,14 +187,19 @@ export const firebase_modify = {
         } else {
           const divs = { ...data.val() };
 
-          for (let i = 1; i <= Object.keys(divs).length; i++) {
-            if (!value[i - 1]) {
-              delete divs[i];
+          let newDivs = {};
+
+          for (let i = 0; i < Object.keys(divs).length; i++) {
+            if (value[i] !== undefined) {
+              const key = Object.keys(divs)[i];
+              newDivs[i + 1] = divs[key];
             }
           }
 
+        
+
           value.forEach((value_obj, i) => {
-            const curDiv = { ...divs[i + 1] };
+            const curDiv = { ...newDivs[i + 1] };
             curDiv.alt = curDiv.alt || "";
             curDiv.url = curDiv.url || "";
             curDiv.rowStart = value_obj.rowStart;
@@ -202,15 +207,21 @@ export const firebase_modify = {
             curDiv.columnStart = value_obj.columnStart;
             curDiv.columnEnd = value_obj.columnEnd;
 
-            divs[i + 1] = curDiv;
+            newDivs[i + 1] = curDiv;
           });
 
-          update(child(dbRef, `unfinished${path}/articles/${id}`), { divs: divs });
+          update(child(dbRef, `unfinished${path}/articles/${id}`), { divs: newDivs });
         }
       })
       .catch((error) => {
         console.error(error);
       });
+  },
+  grid_url: function (path, id, value, item) {
+    update(child(dbRef, `unfinished${path}/articles/${id}/divs/${item}`), { url: value });
+  },
+  grid_alt: function (path, id, value, item) {
+    update(child(dbRef, `unfinished${path}/articles/${id}/divs/${item}`), { alt: value });
   },
 };
 

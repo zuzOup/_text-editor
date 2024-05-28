@@ -5,7 +5,9 @@ import { colors } from "../../../../../helpers/helpers-articles";
 function IG_squares({ row, col, mouseUp, squares }) {
   let style = { backgroundColor: "white" };
   if (squares[row * 6 - 6 + col]) {
-    style = { backgroundColor: `${colors(squares[row * 6 - 6 + col])}` };
+    style = {
+      backgroundColor: `${colors(squares[row * 6 - 6 + col])}`,
+    };
   }
 
   return (
@@ -16,7 +18,9 @@ function IG_squares({ row, col, mouseUp, squares }) {
       className="square"
       onMouseUp={mouseUp}
       style={style}
-    ></div>
+    >
+      {squares[row * 6 - 6 + col]}
+    </div>
   );
 }
 
