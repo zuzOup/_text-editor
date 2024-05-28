@@ -35,6 +35,9 @@ function Input_yt_url({ urlID, modifyArticle, id, path }) {
 
       modifyArticle(id, modifier_yt_urlID, urlID);
       firebase_modify.yt_url(path, id, urlID);
+    } else if (value === "") {
+      modifyArticle(id, modifier_yt_urlID, "");
+      firebase_modify.yt_url(path, id, "");
     } else {
       showAlert(true);
     }

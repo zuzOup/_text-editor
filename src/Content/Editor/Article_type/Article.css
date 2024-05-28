@@ -54,6 +54,7 @@
 
 .article_yt {
   background-size: cover;
+  border-radius: 2px;
 }
 
 .article_yt:hover {

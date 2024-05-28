@@ -77,6 +77,8 @@ function Editor({
                 articleType={articleType}
                 articleData={articleData}
                 path={path}
+                setArticleOrder={setArticleOrder}
+                articleOrder={articleOrder}
               />
             ))}
           </SortableContext>
