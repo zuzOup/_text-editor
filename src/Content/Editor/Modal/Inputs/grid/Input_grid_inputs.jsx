@@ -5,7 +5,7 @@ import Input_grid_line_alt from "./Input_grid_line_alt";
 
 import { colors } from "../../../../../helpers/helpers-articles";
 
-const getquares = (obj) => {
+const getSquares = (obj) => {
   const flipped = Object.keys(obj).reduce((acc, cur) => {
     acc[obj[cur]]
       ? (acc[obj[cur]] = [...acc[obj[cur]], parseInt(cur)])
@@ -45,30 +45,30 @@ function Input_grid_inputs({ articleData, id, squares, modifyArticle, path }) {
                     className="hr1"
                     style={{
                       backgroundImage: `linear-gradient(to left,rgba(${hexToRgb(
-                        colors(getquares(squares)[i]),
+                        colors(getSquares(squares)[i]),
                         0.75
                       )}), rgba(${hexToRgb(
-                        colors(getquares(squares)[i]),
+                        colors(getSquares(squares)[i]),
                         0.75
-                      )}), rgba(${hexToRgb(colors(getquares(squares)[i]), 0)}))`,
+                      )}), rgba(${hexToRgb(colors(getSquares(squares)[i]), 0)}))`,
                     }}
                   ></hr>
                   <div
-                    style={{ color: `${colors(getquares(squares)[i])}` }}
+                    style={{ color: `${colors(getSquares(squares)[i])}` }}
                     className="grid_inputs_square"
                   >
-                    {getquares(squares)[i]}
+                    {getSquares(squares)[i]}
                   </div>
                   <hr
                     className="hr2"
                     style={{
                       backgroundImage: `linear-gradient(to right,rgba(${hexToRgb(
-                        colors(getquares(squares)[i]),
+                        colors(getSquares(squares)[i]),
                         0.75
                       )}), rgba(${hexToRgb(
-                        colors(getquares(squares)[i]),
+                        colors(getSquares(squares)[i]),
                         0.75
-                      )}), rgba(${hexToRgb(colors(getquares(squares)[i]), 0)}))`,
+                      )}), rgba(${hexToRgb(colors(getSquares(squares)[i]), 0)}))`,
                     }}
                   ></hr>
                 </div>

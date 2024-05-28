@@ -153,6 +153,17 @@ export const clear = {
     obj.rows = "1";
     return obj;
   },
+
+  grid_img: function (data, item) {
+    const obj = { ...data };
+    const divs = { ...data.divs };
+    const items = { ...divs[item] };
+    items.alt = "";
+    items.url = "";
+    divs[item] = items;
+    obj.divs = divs;
+    return obj;
+  },
 };
 
 export const text = {

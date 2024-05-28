@@ -17,22 +17,20 @@ function Input_img_url({ url, setHeight, modifyArticle, id, path, width }) {
   };
 
   return (
-    <>
-      <span>
-        <label htmlFor="url_input">URL: </label>
-        <input
-          type="text"
-          id="url_input"
-          name="url_input"
-          placeholder="..."
-          value={url}
-          onChange={onChangeHandle}
-        ></input>
-        <div className={`alert alert_${alert}`}>
-          <div>❗</div>
-        </div>
-      </span>
-    </>
+    <span>
+      <label htmlFor="url_input">URL: </label>
+      <input
+        type="text"
+        id="url_input"
+        name="url_input"
+        placeholder="..."
+        value={url}
+        onChange={onChangeHandle}
+      ></input>
+      <div className={`alert alert_${alert}`}>
+        <div>❗</div>
+      </div>
+    </span>
   );
 }
 

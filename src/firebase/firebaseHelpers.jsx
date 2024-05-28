@@ -196,8 +196,6 @@ export const firebase_modify = {
             }
           }
 
-        
-
           value.forEach((value_obj, i) => {
             const curDiv = { ...newDivs[i + 1] };
             curDiv.alt = curDiv.alt || "";
@@ -255,6 +253,12 @@ export const firebase_clear = {
     update(child(dbRef, `unfinished${path}/articles/${id}`), {
       divs: 0,
       rows: "1",
+    });
+  },
+  grid_img: function (path, id, item) {
+    update(child(dbRef, `unfinished${path}/articles/${id}/divs/${item}`), {
+      url: "",
+      alt: "",
     });
   },
 };
