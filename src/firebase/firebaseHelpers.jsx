@@ -262,3 +262,61 @@ export const firebase_clear = {
     });
   },
 };
+
+import { dayBefore, dayAfter } from "../helpers/helpers";
+
+export function firebase_publish(data, date, id, setter) {
+  get(dbRef)
+    .then((value) => {
+      const published = value.val().published;
+      const duplicates = Object.keys(published).filter((d) => d === date).length;
+
+      const unfinished = value.val().unfinished;
+
+      if (duplicates === 0 || (duplicates > 0 && unfinished[id].published === true)) {
+        const updated = { ...data, published: true };
+        update(child(dbRef, `published`), {
+          [date]: updated,
+        });
+
+        const articlesLeft = Object.keys(unfinished).filter((d) => d !== id);
+
+        if (articlesLeft.length === 0) {
+          set(ref(database, `unfinished`), 0);
+        } else if (articlesLeft.length > 0) {
+          delete unfinished[id];
+          set(ref(database, `unfinished`), { ...unfinished });
+        }
+        setter("good");
+      } else if (duplicates > 0 && unfinished[id].published === false) {
+        const publishedDates = Object.keys(published);
+
+        let before = dayBefore(date);
+        let after = dayAfter(date);
+
+        if (publishedDates.find((day) => day === before)) {
+          while (publishedDates.find((day) => day === before)) {
+            before = dayBefore(before);
+          }
+        }
+
+        if (publishedDates.find((day) => day === after)) {
+          while (publishedDates.find((day) => day === after)) {
+            after = dayAfter(after);
+          }
+        }
+
+        setter(["everythingWrong", after, before]);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+export function firebase_newArticle(ref) {
+  const dateID = `${Date.now()}`;
+  update(child(dbRef, `unfinished`), { [dateID]: article_fb });
+
+  ref.current = dateID;
+}

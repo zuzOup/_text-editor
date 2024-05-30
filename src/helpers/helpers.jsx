@@ -41,3 +41,22 @@ export function day(date) {
   const diff = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
   return `Den ${diff}.`;
 }
+
+export const color = (bool) => {
+  return bool ? "white" : "var(--inputActive)";
+};
+
+// date = "yyyy-mm-dd"
+export function dayBefore(date, value = 1) {
+  let yesterday = new Date(date);
+  yesterday.setDate(yesterday.getDate() - value);
+
+  return yesterday.toISOString().slice(0, 10);
+}
+
+// date = "yyyy-mm-dd"
+export function dayAfter(date, value = 1) {
+  let tomorrow = new Date(date);
+  tomorrow.setDate(tomorrow.getDate() + value);
+  return tomorrow.toISOString().slice(0, 10);
+}

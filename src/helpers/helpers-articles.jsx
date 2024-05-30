@@ -176,11 +176,4 @@ export const gridValues = (value) => {
 
   return new_arr;
 
-  // let new_obj = {};
-
-  // for (let i = 1; i <= new_arr.length; i++) {
-  //   new_obj[`${i}`] = new_arr[i - 1];
-  // }
-
-  // return new_obj;
 };

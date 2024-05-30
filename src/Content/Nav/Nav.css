@@ -1,0 +1,232 @@
+.nav_inner1,
+.nav_inner2,
+.nav_inner3 {
+  position: absolute;
+  top: 10px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.nav_inner1 {
+  /*background*/
+  z-index: 950;
+  left: 10px;
+  background-color: #e8927aed /*#bf4338d1*/;
+  box-shadow: 1px 1px 5px #8a8a8abf;
+}
+
+.nav_inner1_before-false {
+  width: 40px;
+}
+
+.nav_inner2 {
+  /*button row*/
+  z-index: 1000;
+  width: fit-content;
+  left: 55px;
+
+  button {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    margin: 0 5px;
+    padding: 0;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .nav-button_before-false {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+
+  .nav-button-animate-true {
+    transform: translateY(0.5px) !important;
+  }
+}
+
+.nav_inner3 {
+  /*main Button*/
+  z-index: 1000;
+  left: 10px;
+  width: 40px;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav_inner3:active,
+.nav_inner3:focus {
+  border: 0px solid (0, 0, 0, 0);
+}
+
+/*--------------------Animations----------------------------------*/
+
+/*---Nav slide In---*/
+
+.nav_inner1_false {
+  animation-name: slidein;
+  animation-duration: 500ms;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+@keyframes slidein {
+  from {
+    width: 225px;
+  }
+
+  to {
+    width: 40px;
+  }
+}
+
+/*---Nav slide out---*/
+
+.nav_inner1_true {
+  animation-name: slideout;
+  animation-duration: 500ms;
+  animation-delay: 200ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+@keyframes slideout {
+  from {
+    width: 40px;
+  }
+
+  to {
+    width: 225px;
+  }
+}
+
+/*----buttons in-----*/
+
+.nav-button_true {
+  animation-name: buttonsIn;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+.nav-button_true.nav-button0 {
+  animation-delay: 100ms;
+}
+.nav-button_true.nav-button1 {
+  animation-delay: 220ms;
+}
+.nav-button_true.nav-button2 {
+  animation-delay: 340ms;
+}
+.nav-button_true.nav-button3 {
+  animation-delay: 460ms;
+}
+.nav-button_true.nav-button4 {
+  animation-delay: 580ms;
+}
+
+@keyframes buttonsIn {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/*----buttons out------*/
+.nav-button_false {
+  animation-name: buttonsOut;
+  animation-duration: 200ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+.nav-button_false.nav-button0 {
+  animation-delay: 120ms;
+}
+.nav-button_false.nav-button1 {
+  animation-delay: 90ms;
+}
+.nav-button_false.nav-button2 {
+  animation-delay: 60ms;
+}
+.nav-button_false.nav-button3 {
+  animation-delay: 30ms;
+}
+.nav-button_false.nav-button4 {
+  animation-delay: 0ms;
+}
+
+@keyframes buttonsOut {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  95% {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+}
+
+/*Main button*/
+/*Svg animation by Mikael Ainalem https://codepen.io/ainalem/pen/LJYRxz*/
+
+.nav_mainButton {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 400ms;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .line {
+    fill: none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke: var(--inputActive);
+    stroke-width: 5;
+    stroke-linecap: round;
+  }
+
+  .top {
+    stroke-dasharray: 40 121;
+  }
+
+  .bottom {
+    stroke-dasharray: 40 121;
+  }
+}
+
+.nav_mainButton:hover {
+  .line {
+    stroke: white;
+  }
+}
+
+.nav_mainButtontrue {
+  .top {
+    stroke-dashoffset: -102px;
+  }
+  .bottom {
+    stroke-dashoffset: -102px;
+  }
+}

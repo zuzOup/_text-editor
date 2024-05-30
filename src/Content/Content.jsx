@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 
+import Nav from "./Nav/Nav";
+
 import Preview from "./Header/Preview/Preview";
 import Day from "./Header/Day";
 import Weather from "./Header/Weather/Weather";
@@ -24,6 +26,12 @@ function Content() {
   }, []);
   return (
     <>
+      <Nav
+        articleID={articleID}
+        date={articleData.header.date}
+        articleData={articleData}
+        setArticleData={setArticleData}
+      />
       {/*-------------------------------------------  Header  ------------------------------------------- */}
       <Preview
         previewData={articleData.header.preview}
