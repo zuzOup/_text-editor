@@ -320,3 +320,80 @@ export function firebase_newArticle(ref) {
 
   ref.current = dateID;
 }
+
+export function firebase_delete(id) {
+  get(child(dbRef, `unfinished`))
+    .then((value) => {
+      const unfinished = value.val();
+
+      if (Object.keys(unfinished).length === 1) {
+        set(ref(database, `unfinished`), 0);
+      } else {
+        delete unfinished[id];
+        update(dbRef, { unfinished: unfinished });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+export function firebase_getUnfinished(setter) {
+  get(dbRef)
+    .then((data) => {
+      const unfinished = data.val().unfinished;
+      const published = data.val().published;
+      const unfinishedData = Object.entries(unfinished).reduce((acc, cur) => {
+        return [...acc, [cur[1].header.date, cur[1].header.title, cur[0]]];
+      }, []);
+      const publishedData = Object.entries(published).reduce((acc, cur) => {
+        return [...acc, [cur[1].header.date, cur[1].header.title, cur[0]]];
+      }, []);
+      setter({ unfinished: unfinishedData, published: publishedData });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+export function firebase_load_unfinished(id, setter, idRef) {
+  get(child(dbRef, `unfinished/${id}`))
+    .then((value) => {
+      const data = value.val();
+      setter(value.val());
+
+      const dateID = `${Date.now()}`;
+
+      update(child(dbRef, `unfinished`), {
+        [dateID]: data,
+      }).then(() =>
+        get(child(dbRef, `unfinished`)).then((val) => {
+          const updated = val.val();
+          delete updated[id];
+          update(dbRef, { unfinished: updated });
+        })
+      );
+
+      idRef.current = dateID;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+export function firebase_load_published(id, setter, idRef) {
+  get(child(dbRef, `published/${id}`))
+    .then((value) => {
+      const articleData = value.val();
+
+      const dateID = `${Date.now()}`;
+      update(child(dbRef, `unfinished`), {
+        [dateID]: articleData,
+      });
+
+      setter(articleData);
+      idRef.current = dateID;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}

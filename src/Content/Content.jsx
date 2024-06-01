@@ -18,7 +18,7 @@ import { firebase_initialData } from "../firebase/firebaseHelpers";
 import "./Header/Header.css";
 
 function Content() {
-  const [articleData, setArticleData] = useState(article);
+  const [articleData, setArticleData] = useState({ ...article });
   const articleID = useRef("");
 
   useEffect(() => {

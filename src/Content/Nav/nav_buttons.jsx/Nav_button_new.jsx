@@ -3,9 +3,18 @@ import { useState } from "react";
 
 import { color } from "../../../helpers/helpers";
 
-function Nav_button_new({ firstUseRef, bool }) {
+import { newA } from "../../../helpers/helpers";
+import { firebase_newArticle } from "../../../firebase/firebaseHelpers";
+
+function Nav_button_new({ firstUseRef, bool, articleID, setArticleData, setMenu }) {
   const [hover, setHover] = useState(false);
   const size = "25px";
+
+  const newArticle = () => {
+    setArticleData(newA());
+    firebase_newArticle(articleID);
+    setMenu(false);
+  };
 
   return (
     <button
@@ -16,6 +25,7 @@ function Nav_button_new({ firstUseRef, bool }) {
       onMouseLeave={() => {
         setHover(false);
       }}
+      onClick={newArticle}
     >
       <svg
         width={size}
@@ -44,5 +54,8 @@ export default Nav_button_new;
 
 Nav_button_new.propTypes = {
   bool: PropTypes.bool,
-  firstUseRef: PropTypes.any,
+  firstUseRef: PropTypes.object,
+  articleID: PropTypes.object,
+  setArticleData: PropTypes.func,
+  setMenu: PropTypes.func,
 };

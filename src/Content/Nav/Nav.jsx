@@ -36,10 +36,30 @@ function Nav({ articleID, date, articleData, setArticleData }) {
           setArticleData={setArticleData}
           setMenu={setMenu}
         />
-        <Nav_button_load bool={menu} firstUseRef={firstUseRef} />
-        <Nav_button_new bool={menu} firstUseRef={firstUseRef} />
-        <Nav_button_json bool={menu} firstUseRef={firstUseRef} />
-        <Nav_button_delete bool={menu} firstUseRef={firstUseRef} />
+        <Nav_button_load
+          bool={menu}
+          firstUseRef={firstUseRef}
+          setMenu={setMenu}
+          setArticleData={setArticleData}
+          articleID={articleID}
+        />
+        <Nav_button_new
+          bool={menu}
+          firstUseRef={firstUseRef}
+          setArticleData={setArticleData}
+          articleID={articleID}
+          setMenu={setMenu}
+        />
+        <Nav_button_json bool={menu} firstUseRef={firstUseRef} data={articleData} />
+        <Nav_button_delete
+          bool={menu}
+          firstUseRef={firstUseRef}
+          articleID={articleID}
+          date={date}
+          articleData={articleData}
+          setArticleData={setArticleData}
+          setMenu={setMenu}
+        />
       </div>
       <button
         onClick={menuHandle}

@@ -13,15 +13,6 @@
     font-size: 13px;
     background-color: #f8dad2;
     color: var(--darkRed);
-    /* 
-     background-size: 300% 100%;
-     background-image: linear-gradient(
-       to right,
-       #fdfcfa,
-       #e2b7ad,
-       rgb(226, 183, 173),
-       #fdfcfa
-     ); */
     box-shadow: 0 2px 7.5px 0 rgba(226, 183, 173, 0.65);
     transition: background-position 0.4s ease-in-out;
 
@@ -79,6 +70,92 @@
     }
     button:hover {
       font-weight: 600;
+    }
+  }
+}
+
+.modal_load {
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h4 {
+    font-family: var(--fontHeader);
+    font-weight: 400;
+    font-size: 30px;
+    margin: 20px 0;
+  }
+
+  button {
+    position: relative;
+    top: -525px;
+    left: 434px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
+    border-radius: 50px;
+    border: 1px solid #e6a49566;
+    font-family: var(--fontText);
+    font-size: 13px;
+    background-color: #f8dad2;
+    color: var(--darkRed);
+    box-shadow: 0 2px 7.5px 0 rgba(226, 183, 173, 0.65);
+    transition: background-position 0.4s ease-in-out;
+
+    &:hover {
+      color: var(--input);
+      background-color: #e6a495;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  .load_inner {
+    margin: 0;
+    width: 90%;
+    display: flex;
+    height: 450px;
+    flex-direction: row;
+
+    div {
+      margin: 0;
+      height: 100%;
+    }
+
+    & > div:first-child {
+      width: 20%;
+
+      border: 1px solid salmon;
+    }
+    & > div:last-child {
+      width: 80%;
+      border: 1px solid blueviolet;
+      overflow-y: scroll;
+
+      button {
+        position: inherit;
+        background-color: var(--input);
+        width: 100%;
+        height: 30px;
+        text-align: left;
+        font-size: large;
+        border: none;
+        box-shadow: none;
+        color: black;
+      }
+      button:hover {
+        color: var(--darkRed);
+      }
+    }
+
+    .load_finished-true,
+    .load_finished-false {
+      all: unset;
     }
   }
 }

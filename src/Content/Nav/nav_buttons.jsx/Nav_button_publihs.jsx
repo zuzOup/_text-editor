@@ -2,8 +2,10 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 
-import { color, article } from "../../../helpers/helpers";
-import { firebase_publish, firebase_newArticle } from "../../../firebase/firebaseHelpers";
+import { color } from "../../../helpers/helpers";
+import { firebase_publish } from "../../../firebase/firebaseHelpers";
+
+import Nav_modal_New_Load from "./Nav_modal_New_Load";
 
 const size = "25px";
 
@@ -25,12 +27,6 @@ function Nav_button_publihs({
     setMenu(false);
   };
 
-  const newArticle = () => {
-    setModal(false);
-    firebase_newArticle(articleID);
-    setArticleData(article);
-  };
-
   const publish2 = () => {
     const newDate = document.getElementById("newDate-input").value;
     firebase_publish(articleData, newDate, articleID.current, setModal);
@@ -42,7 +38,6 @@ function Nav_button_publihs({
 
   return (
     <>
-      {modal}
       <button
         className={`nav-button0 nav-button_${firstUseRef.current}${bool} nav-button-animate-${hover}`}
         onMouseEnter={() => {
@@ -80,13 +75,12 @@ function Nav_button_publihs({
           <div className="modal">
             <div className="modal_nav modal_inner">
               {modal === "good" && (
-                <div className="publish_ok">
-                  <h4>Všechno fpoho!</h4>
-                  <span>
-                    <button onClick={newArticle}>New Article</button>
-                    <button>Load Article</button>
-                  </span>
-                </div>
+                <Nav_modal_New_Load
+                  txt="Všechno fpoho!"
+                  setModal={setModal}
+                  setArticleData={setArticleData}
+                  articleID={articleID}
+                />
               )}
               {modal[0] === "everythingWrong" && (
                 <div className="publish_notsook">
@@ -108,7 +102,7 @@ function Nav_button_publihs({
                   </span>
                   <button onClick={publish2}>Publish</button>
                 </div>
-              )}
+              )}  
             </div>
           </div>,
           document.body

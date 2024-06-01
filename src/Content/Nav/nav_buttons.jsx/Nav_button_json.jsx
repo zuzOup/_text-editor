@@ -3,9 +3,22 @@ import { useState } from "react";
 
 import { color } from "../../../helpers/helpers";
 
-function Nav_button_json({ firstUseRef, bool }) {
+function Nav_button_json({ firstUseRef, bool, data }) {
   const [hover, setHover] = useState(false);
   const size = "25px";
+
+  const clickHandle = () => {
+    const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+
+    if (data?.header?.date || data?.header?.title) {
+      a.download = `${data?.header?.date}_${data?.header?.title}.json`;
+    } else {
+      a.download = `article.json`;
+    }
+    a.click();
+  };
 
   return (
     <button
@@ -16,6 +29,7 @@ function Nav_button_json({ firstUseRef, bool }) {
       onMouseLeave={() => {
         setHover(false);
       }}
+      onClick={clickHandle}
     >
       <svg
         width={size}
@@ -49,5 +63,6 @@ export default Nav_button_json;
 
 Nav_button_json.propTypes = {
   bool: PropTypes.bool,
-  firstUseRef: PropTypes.any,
+  firstUseRef: PropTypes.object,
+  data: PropTypes.object,
 };

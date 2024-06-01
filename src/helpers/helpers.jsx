@@ -16,6 +16,23 @@ export const article = {
   },
 };
 
+export function newA() {
+  const art = {
+    published: false,
+    dateInTitle: true,
+    articles: {},
+    article_order: [],
+    header: {
+      date: new Date().toISOString().substring(0, 10),
+      place: { latitude: 43.7001, longitude: -79.4163, place: "Toronto" },
+      title: "",
+      preview: { url: "", alt: "" },
+      deco: false,
+    },
+  };
+  return art;
+}
+
 export const article_fb = {
   published: false,
   dateInTitle: true,
@@ -59,4 +76,9 @@ export function dayAfter(date, value = 1) {
   let tomorrow = new Date(date);
   tomorrow.setDate(tomorrow.getDate() + value);
   return tomorrow.toISOString().slice(0, 10);
+}
+
+export function normDate(date) {
+  const splitted = date.split("-").map((x) => parseInt(x));
+  return `${splitted[2]}.${splitted[1]}.${splitted[0]}`;
 }
