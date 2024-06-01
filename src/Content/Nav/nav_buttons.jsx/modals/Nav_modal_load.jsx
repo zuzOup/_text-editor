@@ -39,10 +39,10 @@ function Nav_modal_load({ setModal, setArticleData, articleID }) {
       <div className="load_inner">
         <div>
           <button className={`load_finished-${finished}`} onClick={unfinished}>
-            unfinished {`${finished}`}
+            Unfinished
           </button>
           <button className={`load_finished-${!finished}`} onClick={published}>
-            finished {`${!finished}`}
+            Published
           </button>
         </div>
         <div>
