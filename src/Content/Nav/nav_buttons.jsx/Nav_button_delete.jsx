@@ -4,10 +4,10 @@ import { createPortal } from "react-dom";
 
 import { color } from "../../../helpers/helpers";
 
-import { article } from "../../../helpers/helpers";
-import { firebase_newArticle, firebase_delete } from "../../../firebase/firebaseHelpers";
+import { firebase_delete } from "../../../firebase/firebaseHelpers";
 
-import Nav_modal_New_Load from "./Nav_modal_New_Load";
+import Nav_modal_New_Load from "./modals/Nav_modal_New_Load";
+import Nav_modal_load from "./modals/Nav_modal_load";
 
 function Nav_button_delete({ firstUseRef, bool, articleID, setArticleData, setMenu }) {
   const [hover, setHover] = useState(false);
@@ -20,7 +20,6 @@ function Nav_button_delete({ firstUseRef, bool, articleID, setArticleData, setMe
     setModal(true);
     setMenu(false);
   };
-
 
   return (
     <>
@@ -61,18 +60,25 @@ function Nav_button_delete({ firstUseRef, bool, articleID, setArticleData, setMe
       {modal !== false &&
         createPortal(
           <div className="modal">
-            <div className="modal_nav modal_inner">
+            {modal === true && (
               <Nav_modal_New_Load
                 txt="Smazáno!"
-            
                 setModal={setModal}
                 setArticleData={setArticleData}
                 articleID={articleID}
               />
-            </div>
+            )}
+            {modal === "load" && (
+              <Nav_modal_load
+                setModal={setModal}
+                setArticleData={setArticleData}
+                articleID={articleID}
+              />
+            )}
           </div>,
           document.body
         )}
+      {}
     </>
   );
 }

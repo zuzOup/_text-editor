@@ -4,7 +4,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 
 import { color } from "../../../helpers/helpers";
-import Nav_modal_load from "./Nav_modal_load";
+import Nav_modal_load from "./modals/Nav_modal_load";
 
 function Nav_button_load({ firstUseRef, bool, setArticleData, articleID, setMenu }) {
   const [hover, setHover] = useState(false);
@@ -53,12 +53,14 @@ function Nav_button_load({ firstUseRef, bool, setArticleData, articleID, setMenu
       </button>
       {modal !== false &&
         createPortal(
-          <Nav_modal_load
-            modal={modal}
-            setArticleData={setArticleData}
-            articleID={articleID}
-            setModal={setModal}
-          />,
+          <div className="modal">
+            <Nav_modal_load
+              modal={modal}
+              setArticleData={setArticleData}
+              articleID={articleID}
+              setModal={setModal}
+            />
+          </div>,
           document.body
         )}
     </>
