@@ -9,7 +9,14 @@ import { firebase_delete } from "../../../firebase/firebaseHelpers";
 import Nav_modal_New_Load from "./modals/Nav_modal_New_Load";
 import Nav_modal_load from "./modals/Nav_modal_load";
 
-function Nav_button_delete({ firstUseRef, bool, articleID, setArticleData, setMenu }) {
+function Nav_button_delete({
+  firstUseRef,
+  bool,
+  articleID,
+  setArticleData,
+  setMenu,
+
+}) {
   const [hover, setHover] = useState(false);
   const [modal, setModal] = useState(false);
 
@@ -73,6 +80,7 @@ function Nav_button_delete({ firstUseRef, bool, articleID, setArticleData, setMe
                 setModal={setModal}
                 setArticleData={setArticleData}
                 articleID={articleID}
+            
               />
             )}
           </div>,
@@ -92,4 +100,5 @@ Nav_button_delete.propTypes = {
   articleData: PropTypes.object,
   setArticleData: PropTypes.func,
   setMenu: PropTypes.func,
+  setLastDecos: PropTypes.object,
 };

@@ -48,7 +48,7 @@ export function firebase_initialData(setter, ref) {
     });
 }
 
-export function firebase_lastDeco(ref) {
+export function firebase_lastDeco(setter) {
   get(child(dbRef, `published`))
     .then((snapshot) => {
       const sorted = Object.keys(snapshot.val()).sort(
@@ -62,10 +62,10 @@ export function firebase_lastDeco(ref) {
         snapshot.val()[article].header.title.includes("✮")
       );
 
-      ref.current = {
+      setter({
         vol: chopOffEnds(snapshot.val()[lastVolDate].header.title, "Vojtíka ", " 🏐"),
         star: chopOffEnds(snapshot.val()[lastStarDate].header.title, "hvězdičky ", " ✮"),
-      };
+      });
     })
     .catch((error) => {
       console.error(error);
@@ -265,7 +265,7 @@ export const firebase_clear = {
 
 import { dayBefore, dayAfter } from "../helpers/helpers";
 
-export function firebase_publish(data, date, id, setter) {
+export function firebase_publish(data, date, id, setter, decoSetter) {
   get(dbRef)
     .then((value) => {
       const published = value.val().published;
@@ -273,10 +273,22 @@ export function firebase_publish(data, date, id, setter) {
 
       const unfinished = value.val().unfinished;
 
+  
+      const dataDeco = { ...data };
+      if (data.header.deco !== false) {
+        dataDeco.dateInTitle = false;
+        if (data.header.deco === "vol") {
+          dataDeco.header.title = `🏐 ` + data.header.title + ` 🏐`;
+        } else if (data.header.deco === "star") {
+          dataDeco.header.title = `⋆｡° ✮ ` + data.header.title + ` ✮ ° ｡⋆`;
+        }
+      }
+
       if (duplicates === 0 || (duplicates > 0 && unfinished[id].published === true)) {
-        const updated = { ...data, published: true };
-        update(child(dbRef, `published`), {
-          [date]: updated,
+        const updated = { ...dataDeco, published: true };
+
+        update(child(dbRef, `published`), { [date]: updated }).then(() => {
+          firebase_lastDeco(decoSetter);
         });
 
         const articlesLeft = Object.keys(unfinished).filter((d) => d !== id);
@@ -355,11 +367,26 @@ export function firebase_getUnfinished(setter) {
       console.error(error);
     });
 }
+
 export function firebase_load_unfinished(id, setter, idRef) {
   get(child(dbRef, `unfinished/${id}`))
     .then((value) => {
       const data = value.val();
-      setter(value.val());
+
+      const header = { ...data.header };
+      if (
+        header.deco !== false &&
+        (header.title.includes("🏐") || header.title.includes("✮"))
+      ) {
+        if (header.deco === "vol") {
+          header.title = chopOffEnds(data.header.title, "🏐 ", " 🏐");
+        } else if (header.deco === "star") {
+          header.title = chopOffEnds(data.header.title, "✮ ", " ✮");
+        }
+        data.header = header;
+      }
+
+      setter(data);
 
       const dateID = `${Date.now()}`;
 
@@ -384,6 +411,16 @@ export function firebase_load_published(id, setter, idRef) {
   get(child(dbRef, `published/${id}`))
     .then((value) => {
       const articleData = value.val();
+
+      const header = { ...articleData.header };
+      if (header.deco !== false) {
+        if (header.deco === "vol") {
+          header.title = chopOffEnds(articleData.header.title, "🏐 ", " 🏐");
+        } else if (header.deco === "star") {
+          header.title = chopOffEnds(articleData.header.title, "✮ ", " ✮");
+        }
+        articleData.header = header;
+      }
 
       const dateID = `${Date.now()}`;
       update(child(dbRef, `unfinished`), {

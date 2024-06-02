@@ -24,7 +24,12 @@ function Nav_modal_load({ setModal, setArticleData, articleID }) {
   };
 
   const button_unfinished = (e) => {
-    firebase_load_unfinished(e.target.dataset.id, setArticleData, articleID);
+    firebase_load_unfinished(
+      e.target.dataset.id,
+      setArticleData,
+      articleID
+    
+    );
     setModal(false);
   };
 
@@ -77,4 +82,5 @@ Nav_modal_load.propTypes = {
   setModal: PropTypes.func,
   setArticleData: PropTypes.func,
   articleID: PropTypes.object,
+  setLastDecos: PropTypes.object,
 };

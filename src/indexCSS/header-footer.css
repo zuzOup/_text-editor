@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
 
-  background-image: url("/index/banner.png");
+  background-image: url("/index/banner.png"), url("/index/banner_lowRes.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -55,6 +55,15 @@
 .article_yt {
   background-size: cover;
   border-radius: 2px;
+
+  .YT_title {
+    position: relative;
+    top: -25px;
+    left: 5px;
+    color: var(--inputActive);
+    font-style: italic;
+    text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1), 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
 }
 
 .article_yt:hover {

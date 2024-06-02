@@ -82,3 +82,4 @@ export function normDate(date) {
   const splitted = date.split("-").map((x) => parseInt(x));
   return `${splitted[2]}.${splitted[1]}.${splitted[0]}`;
 }
+

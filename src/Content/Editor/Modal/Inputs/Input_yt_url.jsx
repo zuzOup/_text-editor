@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { modifier_yt_urlID } from "../../../../helpers/helpers-modifiers";
 import { firebase_modify } from "../../../../firebase/firebaseHelpers";
+import { fetchTitle_yt } from "../../../../helpers/helpers-articles";
 
 const videoValue = [
   "https://www.youtube.com/watch?v=",
@@ -16,7 +17,7 @@ const isYT = (urlID) => {
   return "";
 };
 
-function Input_yt_url({ urlID, modifyArticle, id, path }) {
+function Input_yt_url({ urlID, modifyArticle, id, path, setTitle }) {
   const [url, setUrl] = useState(isYT(urlID));
   const [showUrlID, setShowURL] = useState(false);
   const [alert, showAlert] = useState(false);
@@ -35,9 +36,11 @@ function Input_yt_url({ urlID, modifyArticle, id, path }) {
 
       modifyArticle(id, modifier_yt_urlID, urlID);
       firebase_modify.yt_url(path, id, urlID);
+      fetchTitle_yt(urlID, setTitle);
     } else if (value === "") {
       modifyArticle(id, modifier_yt_urlID, "");
       firebase_modify.yt_url(path, id, "");
+      setTitle("");
     } else {
       showAlert(true);
     }
@@ -81,4 +84,5 @@ Input_yt_url.propTypes = {
   id: PropTypes.number,
   modifyArticle: PropTypes.func,
   path: PropTypes.string,
+  setTitle: PropTypes.func,
 };

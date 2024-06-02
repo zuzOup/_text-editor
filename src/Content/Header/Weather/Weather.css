@@ -5,7 +5,7 @@
 
   width: 150px;
   height: 206px;
-  background-image: url("weather.png");
+  background-image: url("/weather.png");
 
   background-position: center;
   background-repeat: no-repeat;

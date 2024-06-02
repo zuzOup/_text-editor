@@ -6,7 +6,14 @@ import { createPortal } from "react-dom";
 import { color } from "../../../helpers/helpers";
 import Nav_modal_load from "./modals/Nav_modal_load";
 
-function Nav_button_load({ firstUseRef, bool, setArticleData, articleID, setMenu }) {
+function Nav_button_load({
+  firstUseRef,
+  bool,
+  setArticleData,
+  articleID,
+  setMenu,
+
+}) {
   const [hover, setHover] = useState(false);
   const [modal, setModal] = useState(false);
 
@@ -59,6 +66,7 @@ function Nav_button_load({ firstUseRef, bool, setArticleData, articleID, setMenu
               setArticleData={setArticleData}
               articleID={articleID}
               setModal={setModal}
+              
             />
           </div>,
           document.body
@@ -72,4 +80,9 @@ export default Nav_button_load;
 Nav_button_load.propTypes = {
   bool: PropTypes.bool,
   firstUseRef: PropTypes.any,
+  articleID: PropTypes.object,
+  articleData: PropTypes.object,
+  setArticleData: PropTypes.func,
+  setLastDecos: PropTypes.object,
+  setMenu: PropTypes.func,
 };

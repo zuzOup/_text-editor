@@ -16,16 +16,16 @@ export async function setInitialHeight(url, set, width) {
     const source = src(url, width);
 
     /*TODO: REMOVE!!!!!!!! */
-    if (
-      url ===
-      `https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?`
-    ) {
-      const initialHeight = await preloadImage(
-        `https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?w=${width}`
-      );
-      set(initialHeight);
-      return;
-    }
+    // if (
+    //   url ===
+    //   `https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?`
+    // ) {
+    //   const initialHeight = await preloadImage(
+    //     `https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?w=${width}`
+    //   );
+    //   set(initialHeight);
+    //   return;
+    // }
 
     /*-----*/
 
@@ -40,11 +40,11 @@ export async function setInitialHeight(url, set, width) {
 
 export function src(url, size) {
   /*TODO: REMOVE!!!!!!!! */
-  if (
-    url ===
-    `https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?`
-  )
-    return url + "w=" + size;
+  // if (
+  //   url ===
+  //   `https://static.scientificamerican.com/sciam/cache/file/2AE14CDD-1265-470C-9B15F49024186C10_source.jpg?`
+  // )
+  //   return url + "w=" + size;
 
   /*-----*/
 
@@ -141,7 +141,6 @@ export const state = (divs) => {
   }
 };
 
-
 export const gridValues = (value) => {
   const obj = { ...value };
   const flipped = Object.keys(obj).reduce((acc, cur) => {
@@ -175,5 +174,14 @@ export const gridValues = (value) => {
   });
 
   return new_arr;
+};
 
+export const fetchTitle_yt = async (id, setter) => {
+  const api = import.meta.env.VITE_API_YOUTUBE;
+  const response = await fetch(
+    `https://www.googleapis.com/youtube/v3/videos?id=${id}&key=${api}&fields=items(id,snippet(title))&part=snippet`
+  );
+  const data = await response.json();
+  const title = data.items[0].snippet.title;
+  setter(title);
 };

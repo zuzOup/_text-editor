@@ -113,6 +113,7 @@
 /*----buttons in-----*/
 
 .nav-button_true {
+  display: block;
   animation-name: buttonsIn;
   animation-duration: 500ms;
   animation-iteration-count: 1;
@@ -149,6 +150,7 @@
 
 /*----buttons out------*/
 .nav-button_false {
+  display: none;
   animation-name: buttonsOut;
   animation-duration: 200ms;
   animation-iteration-count: 1;

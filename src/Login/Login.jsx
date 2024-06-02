@@ -10,6 +10,7 @@ function Login({ setAuth }) {
   const [password, setPassword] = useState("");
 
   const [errorMessage, setErrorMessage] = useState(false);
+  const [passVis, setpassVis] = useState("password");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,13 +44,24 @@ function Login({ setAuth }) {
           </div>
           <div className="inputs">
             <div className="label">Password:</div>
+
             <input
-              type="password"
+              type={passVis}
               id="password"
               value={password}
               onChange={(e) => handleInput(e, setPassword)}
               required
             />
+            <div
+              className="eye"
+              type="checkbox"
+              onMouseDown={() => {
+                setpassVis("text");
+              }}
+              onMouseUp={() => {
+                setpassVis("password");
+              }}
+            ></div>
           </div>
           <button
             id="login-button"

@@ -18,19 +18,20 @@ function Nav_button_publihs({
   articleData,
   setArticleData,
   setMenu,
+  setLastDecos,
 }) {
   const [hover, setHover] = useState(false);
   const [modal, setModal] = useState(false);
 
   const publish = () => {
-    firebase_publish(articleData, date, articleID.current, setModal);
+    firebase_publish(articleData, date, articleID.current, setModal, setLastDecos);
     setModal(true);
     setMenu(false);
   };
 
   const publish2 = () => {
     const newDate = document.getElementById("newDate-input").value;
-    firebase_publish(articleData, newDate, articleID.current, setModal);
+    firebase_publish(articleData, newDate, articleID.current, setModal, setLastDecos);
   };
 
   const setDate = (e) => {
@@ -83,24 +84,26 @@ function Nav_button_publihs({
               />
             )}
             {modal[0] === "everythingWrong" && (
-              <div className="publish_notsook">
-                Pick a different day!
-                <input id="newDate-input" placeholder="YYYY-MM-DD"></input>
-                <span>
-                  <div className="closest">
-                    <div>Closest before</div>
-                    <button onClick={setDate} data-date={modal[1]}>
-                      {modal[1]}
-                    </button>
-                  </div>
-                  <div className="closest">
-                    <div>Closest after</div>
-                    <button onClick={setDate} data-date={modal[2]}>
-                      {modal[2]}
-                    </button>
-                  </div>
-                </span>
-                <button onClick={publish2}>Publish</button>
+              <div className="modal_nav modal_inner">
+                <div className="publish_notsook">
+                  Pick a different day!
+                  <input id="newDate-input" placeholder="YYYY-MM-DD"></input>
+                  <span>
+                    <div className="closest">
+                      <div>Closest before</div>
+                      <button onClick={setDate} data-date={modal[1]}>
+                        {modal[1]}
+                      </button>
+                    </div>
+                    <div className="closest">
+                      <div>Closest after</div>
+                      <button onClick={setDate} data-date={modal[2]}>
+                        {modal[2]}
+                      </button>
+                    </div>
+                  </span>
+                  <button onClick={publish2}>Publish</button>
+                </div>{" "}
               </div>
             )}
             {modal === "load" && (
@@ -127,4 +130,5 @@ Nav_button_publihs.propTypes = {
   articleData: PropTypes.object,
   setArticleData: PropTypes.func,
   setMenu: PropTypes.func,
+  setLastDecos: PropTypes.object,
 };

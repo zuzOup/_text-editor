@@ -1,20 +1,10 @@
 import PropTypes from "prop-types";
-import { useEffect, useRef } from "react";
 
 import "./Title.css";
 
-import {
-  firebase_lastDeco,
-  firebase_updateData,
-} from "../../../firebase/firebaseHelpers";
+import { firebase_updateData } from "../../../firebase/firebaseHelpers";
 
-function Title({ title, setTitle, deco, setDeco, path }) {
-  const lastDecos = useRef({ vol: "", star: "" });
-
-  useEffect(() => {
-    firebase_lastDeco(lastDecos);
-  }, []);
-
+function Title({ title, setTitle, deco, setDeco, path, lastDecos }) {
   const uncheck = (e) => {
     if (e.target.id === deco) {
       e.target.checked = false;
@@ -48,9 +38,9 @@ function Title({ title, setTitle, deco, setDeco, path }) {
 
   const lastText = () => {
     if (deco === "vol") {
-      return lastDecos.current.vol;
+      return lastDecos.vol;
     } else if (deco === "star") {
-      return lastDecos.current.star;
+      return lastDecos.star;
     }
   };
 
@@ -99,4 +89,5 @@ Title.propTypes = {
   deco: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   setDeco: PropTypes.func,
   path: PropTypes.string,
+  lastDecos: PropTypes.object,
 };

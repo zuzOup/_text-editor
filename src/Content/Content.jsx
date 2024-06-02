@@ -13,16 +13,18 @@ import Editor from "./Editor/Editor";
 import AddPart from "./AddPart/AddPart";
 
 import { article } from "../helpers/helpers";
-import { firebase_initialData } from "../firebase/firebaseHelpers";
+import { firebase_initialData, firebase_lastDeco } from "../firebase/firebaseHelpers";
 
 import "./Header/Header.css";
 
 function Content() {
   const [articleData, setArticleData] = useState({ ...article });
   const articleID = useRef("");
+  const [lastDecos, setLastDecos] = useState({ vol: "", star: "" });
 
   useEffect(() => {
     firebase_initialData(setArticleData, articleID);
+    firebase_lastDeco(setLastDecos);
   }, []);
   return (
     <>
@@ -31,6 +33,7 @@ function Content() {
         date={articleData.header.date}
         articleData={articleData}
         setArticleData={setArticleData}
+        setLastDecos={setLastDecos}
       />
       {/*-------------------------------------------  Header  ------------------------------------------- */}
       <Preview
@@ -62,6 +65,7 @@ function Content() {
           },
         }}
         path={`/${articleID.current}/header`}
+        deco={articleData.header.deco}
       />
       <Day date={articleData.header.date} />
       <Weather
@@ -89,7 +93,7 @@ function Content() {
               return obj;
             })
           }
-          //TODO: whenPublishing => add deco to title; remove deco
+          lastDecos={lastDecos}
           deco={articleData.header.deco}
           setDeco={(updatedDeco) =>
             setArticleData((prevData) => {

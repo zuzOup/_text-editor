@@ -12,7 +12,7 @@ import Nav_button_delete from "./nav_buttons.jsx/Nav_button_delete";
 import "./Nav.css";
 import "./Nav_modal.css";
 
-function Nav({ articleID, date, articleData, setArticleData }) {
+function Nav({ articleID, date, articleData, setArticleData, setLastDecos }) {
   const [menu, setMenu] = useState(false);
   const [hoverMain, setHoverMain] = useState(false);
 
@@ -35,6 +35,7 @@ function Nav({ articleID, date, articleData, setArticleData }) {
           articleData={articleData}
           setArticleData={setArticleData}
           setMenu={setMenu}
+          setLastDecos={setLastDecos}
         />
         <Nav_button_load
           bool={menu}
@@ -42,6 +43,7 @@ function Nav({ articleID, date, articleData, setArticleData }) {
           setMenu={setMenu}
           setArticleData={setArticleData}
           articleID={articleID}
+       
         />
         <Nav_button_new
           bool={menu}
@@ -59,6 +61,7 @@ function Nav({ articleID, date, articleData, setArticleData }) {
           articleData={articleData}
           setArticleData={setArticleData}
           setMenu={setMenu}
+  
         />
       </div>
       <button
@@ -84,4 +87,5 @@ Nav.propTypes = {
   date: PropTypes.string,
   articleData: PropTypes.object,
   setArticleData: PropTypes.func,
+  setLastDecos: PropTypes.object,
 };
