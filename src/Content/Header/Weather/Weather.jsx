@@ -33,6 +33,21 @@ function Weather({ weather, setWeather, path }) {
   };
 
   const weatherChange = (e) => {
+    if (e.target.value.includes("https://www.google.ca/maps/place/")) {
+      const name = e.target.value.split("place/")[1].split(",")[0];
+      const latlong = e.target.value.split("/@")[1].split(",");
+
+      setWeather({ place: name, latitude: latlong[0], longitude: latlong[1] });
+      firebase_updateData(path, {
+        place: name,
+        latitude: latlong[0],
+        longitude: latlong[1],
+      });
+      e.target.value = name;
+      setWhisper([]);
+      return;
+    }
+
     const data = weather_data.find((x) => x.place === e.target.value);
     let latitude = "---";
     let longitude = "---";
