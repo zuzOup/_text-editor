@@ -273,7 +273,6 @@ export function firebase_publish(data, date, id, setter, decoSetter) {
 
       const unfinished = value.val().unfinished;
 
-  
       const dataDeco = { ...data };
       if (data.header.deco !== false) {
         dataDeco.dateInTitle = false;
@@ -323,6 +322,7 @@ export function firebase_publish(data, date, id, setter, decoSetter) {
     })
     .catch((error) => {
       console.error(error);
+      alert("Posralo se to");
     });
 }
 

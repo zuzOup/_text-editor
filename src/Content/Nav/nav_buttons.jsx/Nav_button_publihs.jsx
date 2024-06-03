@@ -130,5 +130,5 @@ Nav_button_publihs.propTypes = {
   articleData: PropTypes.object,
   setArticleData: PropTypes.func,
   setMenu: PropTypes.func,
-  setLastDecos: PropTypes.object,
+  setLastDecos: PropTypes.func,
 };

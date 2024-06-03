@@ -5,10 +5,12 @@ import Content from "./Content/Content";
 
 function App() {
   const [auth, setAuth] = useState(false);
-
-  if (!auth) return <Login setAuth={setAuth} />;
-
-  return <Content />;
+  return (
+    <>
+      {!auth && <Login setAuth={setAuth} />}
+      {auth && <Content />}
+    </>
+  );
 }
 
 export default App;

@@ -27,7 +27,7 @@ function Content() {
     firebase_lastDeco(setLastDecos);
   }, []);
   return (
-    <>
+    <div>
       <Nav
         articleID={articleID}
         date={articleData.header.date}
@@ -188,22 +188,10 @@ function Content() {
         }
         path={`/${articleID.current}`}
       />
-    </>
+    </div>
   );
 }
 
 export default Content;
 
 Content.propTypes = {};
-
-// removeFromOrder={(removedArticle) => {
-//   setArticleData((prevData) => {
-//     const obj = {
-//       ...prevData,
-//     };
-//     obj.article_order = obj.article_order.filter(
-//       (item) => item !== removedArticle
-//     );
-//     return obj;
-//   });
-// }}

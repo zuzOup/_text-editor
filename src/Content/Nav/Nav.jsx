@@ -43,7 +43,6 @@ function Nav({ articleID, date, articleData, setArticleData, setLastDecos }) {
           setMenu={setMenu}
           setArticleData={setArticleData}
           articleID={articleID}
-       
         />
         <Nav_button_new
           bool={menu}
@@ -61,7 +60,6 @@ function Nav({ articleID, date, articleData, setArticleData, setLastDecos }) {
           articleData={articleData}
           setArticleData={setArticleData}
           setMenu={setMenu}
-  
         />
       </div>
       <button
@@ -87,5 +85,5 @@ Nav.propTypes = {
   date: PropTypes.string,
   articleData: PropTypes.object,
   setArticleData: PropTypes.func,
-  setLastDecos: PropTypes.object,
+  setLastDecos: PropTypes.func,
 };
