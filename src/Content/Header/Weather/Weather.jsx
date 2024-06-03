@@ -45,6 +45,7 @@ function Weather({ weather, setWeather, path }) {
       });
       e.target.value = name;
       setWhisper([]);
+      setFocus(false);
       return;
     }
 
@@ -102,11 +103,11 @@ function Weather({ weather, setWeather, path }) {
           }}
           onBlur={blurHandle}
         ></input>
-
         <p>Latitude:</p>
         <p>{weather.latitude}</p>
         <p>Longitude:</p>
         <p>{weather.longitude}</p>
+        <a href="https://www.google.ca/maps" target="_blank"></a>
       </div>
       {focus && (
         <div className="whisper-container">
